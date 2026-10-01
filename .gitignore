@@ -3,3 +3,4 @@ dist/
 .browser-check/
 .npm-cache/
 *.log
+private-data/

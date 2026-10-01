@@ -1,12 +1,14 @@
 {
-  "name": "karya-copyright-portal",
+  "name": "sapatri-innovation-portal",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "import:feeder": "node scripts/import-feeder.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.*"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
@@ -14,6 +16,7 @@
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.0",
-    "@fontsource/plus-jakarta-sans": "^5.2.0"
+    "@fontsource/plus-jakarta-sans": "^5.2.0",
+    "maplibre-gl": "^6.11.2"
   }
 }

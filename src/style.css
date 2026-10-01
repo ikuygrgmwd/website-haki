@@ -1,4 +1,40 @@
 :root {
+  /* One step (+2px) from the original scale; absolute tokens avoid nested compounding. */
+  --font-7: 9px;
+  --font-8: 10px;
+  --font-9: 11px;
+  --font-10: 12px;
+  --font-11: 13px;
+  --font-12: 14px;
+  --font-13: 15px;
+  --font-14: 16px;
+  --font-15: 17px;
+  --font-16: 18px;
+  --font-18: 20px;
+  --font-20: 22px;
+  --font-21: 23px;
+  --font-22: 24px;
+  --font-23: 25px;
+  --font-24: 26px;
+  --font-25: 27px;
+  --font-26: 28px;
+  --font-27: 29px;
+  --font-28: 30px;
+  --font-29: 31px;
+  --font-30: 32px;
+  --font-32: 34px;
+  --font-33: 35px;
+  --font-34: 36px;
+  --font-35: 37px;
+  --font-41: 43px;
+  --font-46: 48px;
+  --font-48: 50px;
+  --font-52: 54px;
+  --font-64: 66px;
+  --font-small: var(--font-12);
+  --font-body: var(--font-14);
+  font-size: var(--font-16);
+  line-height: 1.55;
   font-family: "DM Sans", sans-serif;
   color: #273242;
   background: #f6f7f9;
@@ -89,7 +125,7 @@ h3 {
   border-radius: 7px;
   padding: 11px 17px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--font-13);
   line-height: 20px;
   white-space: nowrap;
   transition:
@@ -119,7 +155,7 @@ h3 {
 .button.compact {
   min-height: 37px;
   padding: 7px 12px;
-  font-size: 12px;
+  font-size: var(--font-12);
 }
 .button .icon {
   width: 17px;
@@ -130,7 +166,7 @@ h3 {
   align-items: center;
   gap: 9px;
   color: #465368;
-  font-size: 12px;
+  font-size: var(--font-12);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -186,7 +222,7 @@ h3 {
 }
 .brand-mark {
   font-family: var(--heading);
-  font-size: 41px;
+  font-size: var(--font-41);
   line-height: 43px;
   letter-spacing: -4px;
   color: #ef947e;
@@ -200,13 +236,13 @@ h3 {
 .brand-word {
   font-family: var(--heading);
   font-weight: 700;
-  font-size: 30px;
+  font-size: var(--font-30);
   letter-spacing: -1px;
   line-height: 31px;
 }
 .brand-word > span {
   font:
-    500 8px "DM Sans",
+    500 var(--font-8) "DM Sans",
     sans-serif;
   letter-spacing: 2.3px;
   display: block;
@@ -240,7 +276,7 @@ h3 {
   border-radius: 7px;
   padding: 12px 11px;
   margin: 31px 3px 29px;
-  font-size: 12px;
+  font-size: var(--font-12);
   color: #e2e5ea;
   white-space: nowrap;
 }
@@ -256,7 +292,7 @@ h3 {
 .workspace small {
   display: block;
   color: #8f9bab;
-  font-size: 10px;
+  font-size: var(--font-10);
   margin-top: 3px;
 }
 .demo-dot {
@@ -267,7 +303,7 @@ h3 {
   margin-left: auto;
 }
 .nav-label {
-  font-size: 9px;
+  font-size: var(--font-9);
   font-weight: 600;
   letter-spacing: 1.6px;
   color: #7e8c9f;
@@ -282,7 +318,7 @@ h3 {
   padding: 11px 13px;
   margin-bottom: 6px;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: var(--font-12);
   font-weight: 500;
   line-height: 19px;
   min-height: 42px;
@@ -325,7 +361,7 @@ h3 {
   border-left: 1px solid #3c4755;
 }
 .subnav a {
-  font-size: 11px;
+  font-size: var(--font-11);
   display: flex;
   gap: 10px;
   align-items: center;
@@ -377,12 +413,12 @@ h3 {
   margin-bottom: 12px;
 }
 .sidebar-help strong {
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #e8ebf0;
   font-weight: 500;
 }
 .sidebar-help p {
-  font-size: 10px;
+  font-size: var(--font-10);
   line-height: 1.8;
   margin-top: 7px;
   color: #a0acbc;
@@ -393,7 +429,7 @@ h3 {
   align-items: center;
   padding: 0;
   width: 100%;
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #e9ae9b;
   margin-top: 14px;
 }
@@ -405,7 +441,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: var(--font-10);
   padding: 0 7px;
   white-space: nowrap;
 }
@@ -443,7 +479,7 @@ h3 {
   gap: 20px;
 }
 .breadcrumbs {
-  font-size: 11px;
+  font-size: var(--font-11);
   display: flex;
   align-items: center;
   gap: 13px;
@@ -470,7 +506,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 11px;
+  font-size: var(--font-11);
 }
 .help-top .icon {
   width: 16px;
@@ -512,18 +548,18 @@ h3 {
   border: 3px solid #fff;
   box-shadow: 0 0 0 1px #eae5e0;
   border-radius: 50%;
-  font-size: 10px;
+  font-size: var(--font-10);
   font-weight: 700;
 }
 .profile-text {
-  font-size: 11px;
+  font-size: var(--font-11);
   text-align: left;
   font-weight: 600;
 }
 .profile-text small {
   display: block;
   margin-top: 3px;
-  font-size: 9px;
+  font-size: var(--font-9);
   font-weight: 400;
   color: #8e96a3;
 }
@@ -550,11 +586,11 @@ h3 {
 .profile-menu small {
   display: block;
   color: var(--muted);
-  font-size: 9px;
+  font-size: var(--font-9);
   letter-spacing: 1px;
 }
 .profile-menu strong {
-  font-size: 13px;
+  font-size: var(--font-13);
   display: block;
   margin: 8px 0 16px;
 }
@@ -564,7 +600,7 @@ h3 {
   border-top: 1px solid var(--line);
   padding-top: 12px;
   width: 100%;
-  font-size: 12px;
+  font-size: var(--font-12);
   color: #b45443;
 }
 main {
@@ -582,25 +618,25 @@ main {
   margin-bottom: 26px;
 }
 .eyebrow {
-  font-size: 9px;
+  font-size: var(--font-9);
   font-weight: 600;
   letter-spacing: 1.8px;
   color: #939aa6;
   margin-bottom: 11px;
 }
 h1 {
-  font-size: 26px;
+  font-size: var(--font-26);
   letter-spacing: -1px;
   font-weight: 600;
   line-height: 1.4;
 }
 .page-heading p {
-  font-size: 12px;
+  font-size: var(--font-12);
   color: #818997;
   margin-top: 8px;
 }
 .demo-pill {
-  font-size: 10px;
+  font-size: var(--font-10);
   border: 1px solid #e1e5e9;
   border-radius: 30px;
   display: flex;
@@ -636,14 +672,14 @@ h1 {
 }
 .hero-eyebrow {
   display: inline-block;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #a17460;
   font-weight: 600;
   letter-spacing: 1.8px;
   margin-bottom: 15px;
 }
 .hero-content h2 {
-  font-size: 28px;
+  font-size: var(--font-28);
   line-height: 1.4;
   font-weight: 600;
   letter-spacing: -1.1px;
@@ -651,12 +687,12 @@ h1 {
 }
 .hero-content p {
   color: #827d78;
-  font-size: 11px;
+  font-size: var(--font-11);
   line-height: 1.8;
   margin: 12px 0 19px;
 }
 .hero-content .button {
-  font-size: 11px;
+  font-size: var(--font-11);
   min-height: 40px;
   padding: 9px 14px;
   gap: 9px;
@@ -668,7 +704,7 @@ h1 {
 .hero-caption {
   display: flex;
   gap: 6px;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #90877f;
   margin-top: 14px;
 }
@@ -720,7 +756,7 @@ h1 {
 }
 .paper-brand {
   font-family: var(--heading);
-  font-size: 15px;
+  font-size: var(--font-15);
   font-weight: 700;
   color: #565e5e;
   letter-spacing: -0.7px;
@@ -746,7 +782,7 @@ h1 {
   font-family: var(--heading);
   display: block;
   margin-top: 17px;
-  font-size: 10px;
+  font-size: var(--font-10);
   line-height: 1.5;
   color: #6b6e66;
 }
@@ -771,7 +807,7 @@ h1 {
   left: 20px;
   bottom: 23px;
   font-style: italic;
-  font-size: 8px;
+  font-size: var(--font-8);
   color: #a39885;
 }
 .floating-copyright {
@@ -785,7 +821,7 @@ h1 {
   place-items: center;
   background: #f0a58b;
   color: #fdf6ed;
-  font-size: 48px;
+  font-size: var(--font-48);
   box-shadow: 0 9px 22px #a56f5130;
   transform: rotate(-13deg);
   font-family: Arial, sans-serif;
@@ -795,7 +831,7 @@ h1 {
   right: 30px;
   top: 17px;
   color: #a9b3a0;
-  font-size: 41px;
+  font-size: var(--font-41);
   transform: rotate(12deg);
 }
 .art-dot {
@@ -832,7 +868,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: var(--font-10);
   font-weight: 500;
   color: #6f7988;
 }
@@ -865,14 +901,14 @@ h1 {
 }
 .stat-number {
   font-family: var(--heading);
-  font-size: 30px;
+  font-size: var(--font-30);
   font-weight: 600;
   margin: 9px 0 13px;
   line-height: 1.2;
 }
 .stat-number span {
   font-family: "DM Sans", sans-serif;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #a0a7b1;
   font-weight: 400;
   margin-left: 9px;
@@ -881,7 +917,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #8d95a1;
 }
 .tiny-dot {
@@ -909,17 +945,17 @@ h1 {
   gap: 12px;
 }
 .card-header h2 {
-  font-size: 13px;
+  font-size: var(--font-13);
   letter-spacing: -0.2px;
   font-weight: 600;
 }
 .card-header p {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #9097a3;
   margin-top: 7px;
 }
 .card-header .text-link {
-  font-size: 10px;
+  font-size: var(--font-10);
 }
 .empty-state {
   text-align: center;
@@ -966,17 +1002,17 @@ h1 {
   height: 11px;
 }
 .empty-state h3 {
-  font-size: 12px;
+  font-size: var(--font-12);
   font-weight: 600;
 }
 .empty-state p {
-  font-size: 10px;
+  font-size: var(--font-10);
   line-height: 1.8;
   color: #929aa5;
   margin-top: 9px;
 }
 .empty-state .button {
-  font-size: 10px;
+  font-size: var(--font-10);
   margin-top: 18px;
   min-height: 33px;
   padding: 6px 10px;
@@ -986,7 +1022,7 @@ h1 {
   height: 13px;
 }
 .empty-state small {
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #939aa6;
   margin-top: 14px;
 }
@@ -998,7 +1034,7 @@ h1 {
   justify-content: center;
   gap: 6px;
   padding: 12px 9px;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #8f97a4;
 }
 .card-note .icon {
@@ -1044,7 +1080,7 @@ h1 {
   color: #7e8791;
   border: 1px solid #e9ebee;
   border-radius: 50%;
-  font-size: 9px;
+  font-size: var(--font-9);
   flex-shrink: 0;
 }
 .journey li:first-child .journey-number {
@@ -1053,19 +1089,19 @@ h1 {
   border-color: #f0dbce;
 }
 .journey h3 {
-  font-size: 11px;
+  font-size: var(--font-11);
   font-weight: 600;
   margin: 3px 0 6px;
 }
 .journey p {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #8b95a2;
   line-height: 1.7;
 }
 .available-tag,
 .planned-tag {
   display: inline-block;
-  font-size: 8px;
+  font-size: var(--font-8);
   padding: 4px 7px;
   margin-top: 8px;
   border-radius: 4px;
@@ -1103,23 +1139,23 @@ h1 {
   height: 20px;
 }
 .resource-strip h3 {
-  font-size: 11px;
+  font-size: var(--font-11);
   font-weight: 600;
 }
 .resource-strip p {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #87909c;
   margin-top: 5px;
 }
 .resource-strip > .text-link {
   margin-left: auto;
-  font-size: 10px;
+  font-size: var(--font-10);
 }
 .footer {
   padding: 7px 38px 24px;
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #9aa1ac;
   gap: 12px;
 }
@@ -1138,7 +1174,7 @@ h1 {
   padding: 3px 6px;
   border: 1px solid #e1e5e9;
   border-radius: 4px;
-  font-size: 8px;
+  font-size: var(--font-8);
 }
 .phase-badge {
   display: inline-flex;
@@ -1148,7 +1184,7 @@ h1 {
   border: 1px solid #eee7da;
   border-radius: 5px;
   padding: 6px 9px;
-  font-size: 10px;
+  font-size: var(--font-10);
   white-space: nowrap;
 }
 .fee {
@@ -1158,20 +1194,20 @@ h1 {
   white-space: nowrap;
 }
 .fee > span {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #8b94a0;
   display: block;
 }
 .fee strong {
   font-family: var(--heading);
   display: block;
-  font-size: 23px;
+  font-size: var(--font-23);
   font-weight: 600;
   margin-top: 5px;
   letter-spacing: -0.6px;
 }
 .fee small {
-  font-size: 8px;
+  font-size: var(--font-8);
   color: #979fac;
   display: block;
   margin-top: 4px;
@@ -1187,7 +1223,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #7f8a98;
 }
 .application-toolbar > span > .icon {
@@ -1232,15 +1268,15 @@ h1 {
   border: 1px solid #e6e9ed;
   border-radius: 50%;
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: var(--font-12);
 }
 .wizard-step strong {
   font-weight: 600;
-  font-size: 11px;
+  font-size: var(--font-11);
   display: block;
 }
 .wizard-step small {
-  font-size: 9px;
+  font-size: var(--font-9);
   display: block;
   margin-top: 5px;
   color: #929aa5;
@@ -1282,19 +1318,19 @@ h1 {
   height: 18px;
 }
 .form-section-heading h2 {
-  font-size: 15px;
+  font-size: var(--font-15);
   font-weight: 600;
   letter-spacing: -0.3px;
 }
 .form-section-heading p {
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #8b95a2;
   margin-top: 6px;
 }
 .required-note {
   margin-left: auto;
   align-self: center;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #9c9faa;
 }
 .form-grid {
@@ -1311,7 +1347,7 @@ h1 {
   grid-column: 1/-1;
 }
 .form-field label {
-  font-size: 11px;
+  font-size: var(--font-11);
   font-weight: 500;
   color: #566171;
 }
@@ -1327,7 +1363,7 @@ h1 {
   border-radius: 6px;
   background: #fff;
   padding: 12px 13px;
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #485468;
   min-height: 43px;
   transition: border-color 0.2s;
@@ -1353,7 +1389,7 @@ h1 {
   min-height: 98px;
 }
 .form-field small {
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #99a1ab;
 }
 .inline-notice {
@@ -1363,7 +1399,7 @@ h1 {
   border: 1px solid #e5e9ef;
   background: #f7f9fb;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: var(--font-10);
   line-height: 1.8;
   color: #8390a0;
   padding: 13px 14px;
@@ -1387,7 +1423,7 @@ h1 {
   background: #fdfdfe;
 }
 .wizard-footer .button {
-  font-size: 11px;
+  font-size: var(--font-11);
   min-height: 40px;
 }
 .wizard-footer > div {
@@ -1396,7 +1432,7 @@ h1 {
   margin-left: auto;
 }
 .step-count {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #99a1ad;
   margin-left: 5px;
 }
@@ -1404,7 +1440,7 @@ h1 {
   transform: rotate(180deg);
 }
 .application-footnote {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #919ba9;
   display: flex;
   align-items: center;
@@ -1433,15 +1469,15 @@ h1 {
   background: #fcfcfd;
 }
 .planned-section h3 {
-  font-size: 13px;
+  font-size: var(--font-13);
 }
 .planned-section p {
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #8d96a2;
   margin: 9px 0 14px;
 }
 .planned-section .button {
-  font-size: 10px;
+  font-size: var(--font-10);
 }
 .form-section-heading > .phase-badge {
   margin-left: auto;
@@ -1468,12 +1504,12 @@ h1 {
 }
 .attachment-row strong {
   display: block;
-  font-size: 11px;
+  font-size: var(--font-11);
   font-weight: 500;
 }
 .attachment-row small {
   display: block;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #959eab;
   margin-top: 6px;
 }
@@ -1494,7 +1530,7 @@ th {
   background: #fafbfd;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  font-size: 9px;
+  font-size: var(--font-9);
   letter-spacing: 0.7px;
   color: #8b95a3;
   font-weight: 500;
@@ -1504,7 +1540,7 @@ td .empty-state {
 }
 .count-badge {
   font:
-    500 10px "DM Sans",
+    500 var(--font-10) "DM Sans",
     sans-serif;
   background: #f0f2f5;
   padding: 4px 7px;
@@ -1536,12 +1572,12 @@ td .empty-state {
   height: 33px;
 }
 .planned-page h2 {
-  font-size: 25px;
+  font-size: var(--font-25);
   letter-spacing: -0.7px;
   margin-bottom: 14px;
 }
 .planned-page p {
-  font-size: 12px;
+  font-size: var(--font-12);
   line-height: 1.9;
   color: #8a95a2;
   margin-bottom: 20px;
@@ -1568,7 +1604,7 @@ td .empty-state {
   border: 1px solid #e6e9ed;
   background: #f7f8fa;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: var(--font-12);
   flex-shrink: 0;
   color: #8e98a6;
 }
@@ -1578,11 +1614,11 @@ td .empty-state {
   border-color: #d9e6d9;
 }
 .roadmap-item h2 {
-  font-size: 14px;
+  font-size: var(--font-14);
   font-weight: 600;
 }
 .roadmap-item p {
-  font-size: 11px;
+  font-size: var(--font-11);
   line-height: 1.8;
   color: #8b95a3;
   margin-top: 7px;
@@ -1613,12 +1649,12 @@ td .empty-state {
   margin-bottom: 20px;
 }
 .modal h2 {
-  font-size: 21px;
+  font-size: var(--font-21);
   letter-spacing: -0.6px;
 }
 .modal-content {
   margin: 15px 0 23px;
-  font-size: 12px;
+  font-size: var(--font-12);
   line-height: 1.9;
   color: #7a8798;
 }
@@ -1630,7 +1666,7 @@ td .empty-state {
 }
 .modal .button {
   width: 100%;
-  font-size: 12px;
+  font-size: var(--font-12);
 }
 .modal-plan {
   background: #f8f9fb;
@@ -1664,7 +1700,7 @@ td .empty-state {
   margin-bottom: 15px;
 }
 .guide-list p {
-  font-size: 11px;
+  font-size: var(--font-11);
 }
 .login-page {
   min-height: 100vh;
@@ -1699,12 +1735,12 @@ td .empty-state {
 }
 .login-story .hero-eyebrow {
   color: #c9a896;
-  font-size: 9px;
+  font-size: var(--font-9);
   letter-spacing: 2px;
   margin-bottom: 22px;
 }
 .login-story h1 {
-  font-size: 52px;
+  font-size: var(--font-52);
   letter-spacing: -2.8px;
   font-weight: 500;
   line-height: 1.24;
@@ -1713,7 +1749,7 @@ td .empty-state {
   color: #eba08c;
 }
 .login-story-content > p {
-  font-size: 12px;
+  font-size: var(--font-12);
   line-height: 1.9;
   color: #a3b0c0;
   margin-top: 23px;
@@ -1733,7 +1769,7 @@ td .empty-state {
   color: #a5b79f;
 }
 .login-story-caption {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #a4b0c0;
   display: flex;
   gap: 8px;
@@ -1747,7 +1783,7 @@ td .empty-state {
 .login-story-footer {
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #8290a1;
 }
 .login-form-side {
@@ -1761,11 +1797,11 @@ td .empty-state {
   justify-content: flex-end;
   align-items: center;
   gap: 11px;
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #97a0ac;
 }
 .login-top .text-link {
-  font-size: 11px;
+  font-size: var(--font-11);
   color: #ab6954;
 }
 .login-form-container {
@@ -1776,20 +1812,20 @@ td .empty-state {
 }
 .login-welcome {
   display: block;
-  font-size: 9px;
+  font-size: var(--font-9);
   letter-spacing: 1.8px;
   font-weight: 600;
   color: #b08b74;
   margin-bottom: 16px;
 }
 .login-form-container h2 {
-  font-size: 33px;
+  font-size: var(--font-33);
   line-height: 1.4;
   letter-spacing: -1.1px;
   font-weight: 600;
 }
 .login-form-container > p:first-of-type {
-  font-size: 12px;
+  font-size: var(--font-12);
   color: #8e98a6;
   margin: 13px 0 29px;
 }
@@ -1833,7 +1869,7 @@ td .empty-state {
   gap: 10px;
 }
 .login-options > span {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #97a1ad;
   display: flex;
   gap: 5px;
@@ -1844,7 +1880,7 @@ td .empty-state {
   height: 11px;
 }
 .login-options .text-link {
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #b77963;
 }
 .login-submit {
@@ -1859,7 +1895,7 @@ td .empty-state {
   align-items: center;
   gap: 13px;
   margin: 23px 0;
-  font-size: 10px;
+  font-size: var(--font-10);
   color: #a1a9b4;
 }
 .login-divider:before,
@@ -1871,10 +1907,10 @@ td .empty-state {
 }
 .sso-button {
   width: 100%;
-  font-size: 11px;
+  font-size: var(--font-11);
 }
 .sso-button > span {
-  font-size: 8px;
+  font-size: var(--font-8);
   background: #f0f2f4;
   padding: 2px 6px;
   border-radius: 4px;
@@ -1883,12 +1919,12 @@ td .empty-state {
 }
 .verification-text {
   text-align: center;
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #97a1ae;
   margin: 19px 0 28px;
 }
 .verification-text .text-link {
-  font-size: 9px;
+  font-size: var(--font-9);
   color: #b37661;
   padding: 0;
   margin-left: 3px;
@@ -1910,18 +1946,18 @@ td .empty-state {
   width: 16px;
 }
 .demo-box strong {
-  font-size: 10px;
+  font-size: var(--font-10);
   font-weight: 500;
 }
 .demo-box p {
-  font-size: 8px;
+  font-size: var(--font-8);
   color: #929eac;
   margin-top: 5px;
   line-height: 1.6;
 }
 .demo-box > .text-link {
   margin-left: auto;
-  font-size: 9px;
+  font-size: var(--font-9);
   gap: 4px;
 }
 .demo-box > .text-link > .icon {
@@ -1930,7 +1966,7 @@ td .empty-state {
 .login-disclaimer {
   text-align: center;
   color: #a1a9b3;
-  font-size: 9px;
+  font-size: var(--font-9);
   line-height: 1.8;
   margin-top: 15px;
 }
@@ -1938,7 +1974,7 @@ td .empty-state {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: var(--font-10);
   gap: 7px;
   color: #98a1ad;
   margin: 0 auto;
@@ -1994,37 +2030,37 @@ td .empty-state {
     min-height: 315px;
   }
   .hero-content h2 {
-    font-size: 34px;
+    font-size: var(--font-34);
   }
   .hero-art {
     margin-right: 70px;
   }
   .hero-content p {
-    font-size: 13px;
+    font-size: var(--font-13);
   }
   .stat-head {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .stat-description {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .card-header h2 {
-    font-size: 15px;
+    font-size: var(--font-15);
   }
   .empty-state {
     min-height: 260px;
   }
   .journey h3 {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .journey p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .journey li {
     padding-bottom: 25px;
   }
   .hero-content .button {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .login-story-content {
     margin-left: auto;
@@ -2032,7 +2068,7 @@ td .empty-state {
     width: 360px;
   }
   .login-story h1 {
-    font-size: 64px;
+    font-size: var(--font-64);
   }
 }
 @media (max-width: 1200px) {
@@ -2064,7 +2100,7 @@ td .empty-state {
     margin-right: 0;
   }
   .hero-content h2 {
-    font-size: 25px;
+    font-size: var(--font-25);
   }
   .stats-grid {
     gap: 11px;
@@ -2073,14 +2109,14 @@ td .empty-state {
     padding: 15px 13px;
   }
   .stat-head {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .stat-icon {
     width: 25px;
     height: 25px;
   }
   .stat-description {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .wizard-step:not(:last-child):after {
     display: none;
@@ -2096,7 +2132,7 @@ td .empty-state {
     padding-right: 28px;
   }
   .login-story h1 {
-    font-size: 46px;
+    font-size: var(--font-46);
   }
   .login-form-side {
     padding-left: 34px;
@@ -2125,16 +2161,16 @@ td .empty-state {
     transform: scale(0.77);
   }
   .hero-content h2 {
-    font-size: 24px;
+    font-size: var(--font-24);
   }
   .hero-content {
     max-width: 68%;
   }
   .hero-content p {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .hero-content .button {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .hero-content .button > .icon:last-child {
     margin-left: 1px;
@@ -2143,10 +2179,10 @@ td .empty-state {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .stat-head {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .stat-description {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .stat-card {
     padding: 17px;
@@ -2173,22 +2209,22 @@ td .empty-state {
   .journey-number {
     width: 23px;
     height: 23px;
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .journey h3 {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .journey p {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .journey .planned-tag {
-    font-size: 7px;
+    font-size: var(--font-7);
   }
   .resource-strip {
     gap: 10px;
   }
   .resource-strip p {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .profile-text {
     display: none;
@@ -2197,7 +2233,7 @@ td .empty-state {
     gap: 10px;
   }
   .breadcrumbs {
-    font-size: 10px;
+    font-size: var(--font-10);
     gap: 5px;
   }
   .breadcrumbs > span:last-child {
@@ -2211,15 +2247,15 @@ td .empty-state {
     gap: 7px;
   }
   .wizard-step strong {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .wizard-step small {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .step-circle {
     height: 28px;
     width: 28px;
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .wizard-body {
     padding: 23px;
@@ -2235,7 +2271,7 @@ td .empty-state {
     gap: 8px;
   }
   .wizard-footer .button {
-    font-size: 10px;
+    font-size: var(--font-10);
     padding: 9px 10px;
     gap: 5px;
   }
@@ -2246,16 +2282,16 @@ td .empty-state {
     gap: 20px;
   }
   .fee strong {
-    font-size: 20px;
+    font-size: var(--font-20);
   }
   .application-heading h1 {
-    font-size: 23px;
+    font-size: var(--font-23);
   }
   .page-heading {
     gap: 12px;
   }
   .page-heading > .button {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .planned-section {
     padding: 18px;
@@ -2263,7 +2299,7 @@ td .empty-state {
     align-items: flex-start;
   }
   .login-story h1 {
-    font-size: 41px;
+    font-size: var(--font-41);
   }
   .login-story-content {
     padding-left: 0;
@@ -2273,14 +2309,14 @@ td .empty-state {
     margin-left: -20px;
   }
   .login-story-content > p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .login-form-side {
     padding-left: 26px;
     padding-right: 26px;
   }
   .login-form-container h2 {
-    font-size: 29px;
+    font-size: var(--font-29);
   }
   .demo-box {
     flex-wrap: wrap;
@@ -2289,7 +2325,7 @@ td .empty-state {
     margin-left: 42px;
   }
   .demo-box p {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
 }
 @media (max-width: 760px) {
@@ -2378,17 +2414,17 @@ td .empty-state {
     margin-bottom: 23px;
   }
   h1 {
-    font-size: 24px;
+    font-size: var(--font-24);
   }
   .page-heading p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .eyebrow {
-    font-size: 8px;
+    font-size: var(--font-8);
     letter-spacing: 1.4px;
   }
   .page-heading .demo-pill {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .welcome-hero {
     min-height: 285px;
@@ -2398,13 +2434,13 @@ td .empty-state {
     transform: scale(0.85);
   }
   .hero-content h2 {
-    font-size: 27px;
+    font-size: var(--font-27);
   }
   .hero-content {
     max-width: 65%;
   }
   .hero-content p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .stats-grid {
     gap: 13px;
@@ -2413,12 +2449,12 @@ td .empty-state {
     gap: 20px;
   }
   .resource-strip p {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .footer {
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .login-page {
     display: block;
@@ -2436,13 +2472,13 @@ td .empty-state {
     max-width: 420px;
   }
   .login-form-container h2 {
-    font-size: 35px;
+    font-size: var(--font-35);
   }
   .login-form-container .form-field label {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .input-with-icon input {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .demo-box {
     flex-wrap: nowrap;
@@ -2451,42 +2487,42 @@ td .empty-state {
     margin-left: auto;
   }
   .login-form-container > p:first-of-type {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .login-top {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .wizard-step strong {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .wizard-step small {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .wizard-body {
     padding: 24px;
   }
   .wizard-footer .button {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .application-heading h1 {
-    font-size: 24px;
+    font-size: var(--font-24);
   }
   .form-section-heading h2 {
-    font-size: 14px;
+    font-size: var(--font-14);
   }
   .form-field label {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .form-field input,
   .form-field select,
   .form-field textarea {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .attachment-row {
     padding: 16px 12px;
   }
   .resource-strip > .text-link {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .roadmap-item > .phase-badge {
     margin-left: auto;
@@ -2501,7 +2537,7 @@ td .empty-state {
     display: none;
   }
   h1 {
-    font-size: 23px;
+    font-size: var(--font-23);
   }
   .welcome-hero {
     padding: 26px 22px;
@@ -2511,10 +2547,10 @@ td .empty-state {
     max-width: 100%;
   }
   .hero-content h2 {
-    font-size: 25px;
+    font-size: var(--font-25);
   }
   .hero-content p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .hero-art {
     right: -82px;
@@ -2524,20 +2560,20 @@ td .empty-state {
     pointer-events: none;
   }
   .hero-content .button {
-    font-size: 11px;
+    font-size: var(--font-11);
     margin-top: 4px;
   }
   .hero-content .button > .icon:last-child {
     margin-left: 8px;
   }
   .hero-eyebrow {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .hero-caption {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .stat-head {
-    font-size: 10px;
+    font-size: var(--font-10);
     align-items: flex-start;
   }
   .stat-icon {
@@ -2549,27 +2585,27 @@ td .empty-state {
     padding: 15px 13px;
   }
   .stat-number {
-    font-size: 29px;
+    font-size: var(--font-29);
     margin-top: 8px;
   }
   .stat-number span {
-    font-size: 8px;
+    font-size: var(--font-8);
     margin-left: 6px;
   }
   .stat-description {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .card-header {
     padding: 21px 18px 17px;
   }
   .card-header h2 {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .card-header p {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .card-header .text-link {
-    font-size: 9px;
+    font-size: var(--font-9);
     gap: 5px;
   }
   .journey {
@@ -2587,16 +2623,16 @@ td .empty-state {
   .journey-number {
     height: 29px;
     width: 29px;
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .journey h3 {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .journey p {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .journey .planned-tag {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .resource-strip {
     flex-wrap: wrap;
@@ -2606,7 +2642,7 @@ td .empty-state {
     flex: 1;
   }
   .resource-strip p {
-    font-size: 9px;
+    font-size: var(--font-9);
     line-height: 1.7;
   }
   .resource-strip > .text-link {
@@ -2618,7 +2654,7 @@ td .empty-state {
     padding-bottom: 20px;
   }
   .application-heading h1 {
-    font-size: 22px;
+    font-size: var(--font-22);
   }
   .fee {
     border: 0;
@@ -2631,19 +2667,19 @@ td .empty-state {
     flex-wrap: wrap;
   }
   .fee strong {
-    font-size: 18px;
+    font-size: var(--font-18);
     margin: 0;
   }
   .fee small {
     margin: 0;
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .application-toolbar > div {
     width: 100%;
     gap: 7px;
   }
   .application-toolbar .button {
-    font-size: 9px;
+    font-size: var(--font-9);
     padding: 7px 9px;
     gap: 5px;
     flex: 1;
@@ -2664,7 +2700,7 @@ td .empty-state {
     padding: 0 5px;
   }
   .wizard-step strong {
-    font-size: 9px;
+    font-size: var(--font-9);
     line-height: 1.5;
   }
   .wizard-step small {
@@ -2678,10 +2714,10 @@ td .empty-state {
     margin-bottom: 23px;
   }
   .form-section-heading h2 {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .form-section-heading p {
-    font-size: 10px;
+    font-size: var(--font-10);
     line-height: 1.6;
   }
   .form-section-heading > div {
@@ -2689,7 +2725,7 @@ td .empty-state {
   }
   .required-note {
     margin-left: 46px;
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .form-grid {
     grid-template-columns: 1fr;
@@ -2701,11 +2737,11 @@ td .empty-state {
   .form-field input,
   .form-field select,
   .form-field textarea {
-    font-size: 12px;
+    font-size: var(--font-12);
     min-height: 46px;
   }
   .inline-notice {
-    font-size: 9px;
+    font-size: var(--font-9);
     padding: 11px;
     margin-top: 23px;
   }
@@ -2729,10 +2765,10 @@ td .empty-state {
     margin-left: auto;
   }
   .wizard-footer .button {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .application-footnote {
-    font-size: 9px;
+    font-size: var(--font-9);
     align-items: flex-start;
     text-align: center;
     padding: 0 6px;
@@ -2741,7 +2777,7 @@ td .empty-state {
     margin-top: 2px;
   }
   .phase-badge {
-    font-size: 9px;
+    font-size: var(--font-9);
     padding: 5px 7px;
   }
   .attachment-row {
@@ -2749,11 +2785,11 @@ td .empty-state {
     align-items: flex-start;
   }
   .attachment-row strong {
-    font-size: 10px;
+    font-size: var(--font-10);
     line-height: 1.5;
   }
   .attachment-row small {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .attachment-row .button {
     font-size: 0;
@@ -2773,10 +2809,10 @@ td .empty-state {
     gap: 14px;
   }
   .roadmap-item h2 {
-    font-size: 12px;
+    font-size: var(--font-12);
   }
   .roadmap-item p {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .roadmap-item > .phase-badge,
   .roadmap-item > .available-tag {
@@ -2794,38 +2830,38 @@ td .empty-state {
     padding: 40px 20px;
   }
   .planned-page h2 {
-    font-size: 21px;
+    font-size: var(--font-21);
   }
   .planned-page p {
-    font-size: 11px;
+    font-size: var(--font-11);
   }
   .demo-box {
     padding: 12px;
     gap: 8px;
   }
   .demo-box p {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .demo-box > .text-link {
-    font-size: 8px;
+    font-size: var(--font-8);
   }
   .login-form-side {
     padding: 23px;
   }
   .login-form-container h2 {
-    font-size: 32px;
+    font-size: var(--font-32);
   }
   .login-form-container {
     padding-top: 48px;
   }
   .login-top .text-link {
-    font-size: 10px;
+    font-size: var(--font-10);
   }
   .profile > .icon {
     display: none;
   }
   .breadcrumbs > span:last-child {
-    font-size: 9px;
+    font-size: var(--font-9);
   }
   .topbar-actions {
     gap: 3px;

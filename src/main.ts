@@ -6,6 +6,8 @@ import "@fontsource/plus-jakarta-sans/500.css";
 import "@fontsource/plus-jakarta-sans/600.css";
 import "@fontsource/plus-jakarta-sans/700.css";
 import "./style.css";
+import { dashboardTemplate, mountDashboard } from "./dashboard";
+let disposeDashboard: (() => void) | undefined;
 
 const paths: Record<string, string> = {
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -43,11 +45,11 @@ const paths: Record<string, string> = {
 };
 const icon = (name: string, cls = "") =>
   `<svg class="icon ${cls}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.file}</svg>`;
-const logo = `<span class="brand-mark">k<span>·</span></span><span class="brand-word">karya<span>PORTAL HAK CIPTA</span></span>`;
+const logo = `<span class="brand-mark">s<span>·</span></span><span class="brand-word">Sapatri<span>INOVASI & HAK CIPTA</span></span>`;
 const badge = (phase: number) =>
   `<span class="phase-badge">Direncanakan di fase ${phase}</span>`;
 const app = document.querySelector<HTMLDivElement>("#app")!;
-let authenticated = sessionStorage.getItem("karya-demo") === "true";
+let authenticated = sessionStorage.getItem("sapatri-demo") === "true";
 let step = 1;
 let collapsed = false;
 let mobileOpen = false;
@@ -66,7 +68,7 @@ const pages: Record<string, string> = {
   roadmap: "Tahapan Pengembangan",
 };
 const route = () =>
-  location.hash.replace("#/", "") || (authenticated ? "dashboard" : "login");
+  location.hash.replace("#/", "") || "dashboard";
 const escape = (s: string) =>
   s.replace(
     /[&<>"']/g,
@@ -77,13 +79,13 @@ const escape = (s: string) =>
   );
 
 function art() {
-  return `<div class="hero-art" aria-hidden="true"><span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span><span class="art-dot dot-one"></span><span class="art-dot dot-two"></span><div class="paper paper-back"></div><div class="paper paper-front"><span class="paper-brand">karya.</span><div class="paper-lines"><i></i><i></i><i></i></div><span class="paper-title">Sebuah ide.<br>Sepenuhnya milikmu.</span><span class="paper-seal">${icon("check")}</span><span class="paper-signature">Karya orisinal</span></div><span class="floating-copyright">©</span><span class="floating-spark">✦</span></div>`;
+  return `<div class="hero-art" aria-hidden="true"><span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span><span class="art-dot dot-one"></span><span class="art-dot dot-two"></span><div class="paper paper-back"></div><div class="paper paper-front"><span class="paper-brand">sapatri.</span><div class="paper-lines"><i></i><i></i><i></i></div><span class="paper-title">Sebuah ide.<br>Sepenuhnya milikmu.</span><span class="paper-seal">${icon("check")}</span><span class="paper-signature">Karya orisinal</span></div><span class="floating-copyright">©</span><span class="floating-spark">✦</span></div>`;
 }
 
 function sidebar() {
   const nav = (key: string, name: string, symbol: string) =>
     `<a href="#/${key}" class="nav-item ${route() === key ? "active" : ""}" ${route() === key ? 'aria-current="page"' : ""} title="${name}">${icon(symbol)}<span>${name}</span>${key !== "dashboard" ? '<span class="nav-planned"></span>' : ""}</a>`;
-  return `<button class="sidebar-backdrop ${mobileOpen ? "visible" : ""}" aria-label="Tutup navigasi" data-action="close-menu"></button><aside class="sidebar ${collapsed ? "collapsed" : ""} ${mobileOpen ? "mobile-open" : ""}"><a href="#/dashboard" class="brand" aria-label="Karya Dashboard">${logo}</a><button class="collapse-button" data-action="collapse" aria-label="${collapsed ? "Perluas" : "Ciutkan"} sidebar">${icon("chevron")}</button><div class="workspace"><span class="workspace-icon">${icon("shield")}</span><span>Akun personal<small>Ruang karya Anda</small></span><span class="demo-dot"></span></div><div class="nav-label">MENU UTAMA</div><nav aria-label="Navigasi utama">${nav("dashboard", "Dashboard", "grid")}<button class="nav-item nav-parent ${["baru", "ciptaan", "draft"].includes(route()) ? "parent-current" : ""}" data-action="copyright" aria-expanded="${copyrightOpen}" title="Hak Cipta">${icon("file")}<span>Hak Cipta</span>${icon("down", copyrightOpen ? "" : "rotated")}</button><div class="subnav ${copyrightOpen ? "" : "hidden"}">${[
+  return `<button class="sidebar-backdrop ${mobileOpen ? "visible" : ""}" aria-label="Tutup navigasi" data-action="close-menu"></button><aside class="sidebar ${collapsed ? "collapsed" : ""} ${mobileOpen ? "mobile-open" : ""}"><a href="#/dashboard" class="brand" aria-label="Sapatri Dashboard">${logo}</a><button class="collapse-button" data-action="collapse" aria-label="${collapsed ? "Perluas" : "Ciutkan"} sidebar">${icon("chevron")}</button><div class="workspace"><span class="workspace-icon">${icon("shield")}</span><span>Akun personal<small>Ruang karya Anda</small></span><span class="demo-dot"></span></div><div class="nav-label">MENU UTAMA</div><nav aria-label="Navigasi utama">${nav("dashboard", "Dashboard", "grid")}<button class="nav-item nav-parent ${["baru", "ciptaan", "draft"].includes(route()) ? "parent-current" : ""}" data-action="copyright" aria-expanded="${copyrightOpen}" title="Hak Cipta">${icon("file")}<span>Hak Cipta</span>${icon("down", copyrightOpen ? "" : "rotated")}</button><div class="subnav ${copyrightOpen ? "" : "hidden"}">${[
     ["baru", "Permohonan Baru"],
     ["ciptaan", "Daftar Ciptaan"],
     ["draft", "Daftar Ciptaan Draft"],
@@ -94,28 +96,14 @@ function sidebar() {
     )
     .join(
       "",
-    )}</div>${nav("pasca", "Pasca Hak Cipta", "refresh")}${nav("musik", "Hak Cipta Lagu dan/atau Musik", "music")}<div class="nav-divider"></div>${nav("terkait", "Hak Terkait", "copy")}${nav("pasca-terkait", "Pasca Hak Terkait", "refresh")}</nav><div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">${icon("help")}</span><strong>Ada yang bisa dibantu?</strong><p>Kenali langkah pertama<br>untuk melindungi karya Anda.</p><button data-action="help">Pusat bantuan ${icon("arrow")}</button></div><a class="build-status" href="#/roadmap"><span class="status-dot"></span><span>Prototype <b>Fase 1 dari 5</b></span>${icon("chevron")}</a></div></aside>`;
+    )}</div>${nav("pasca", "Pasca Hak Cipta", "refresh")}${nav("musik", "Hak Cipta Lagu dan/atau Musik", "music")}<div class="nav-divider"></div>${nav("terkait", "Hak Terkait", "copy")}${nav("pasca-terkait", "Pasca Hak Terkait", "refresh")}</nav><div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">${icon("help")}</span><strong>Ada yang bisa dibantu?</strong><p>Kenali langkah pertama<br>untuk melindungi karya Anda.</p><button data-action="help">Pusat bantuan ${icon("arrow")}</button></div><a class="build-status" href="#/roadmap"><span class="status-dot"></span><span>Sapatri <b>Portal Kota Bekasi</b></span>${icon("chevron")}</a></div></aside>`;
 }
 
 function shell(content: string) {
-  return `${sidebar()}<div class="main-shell ${collapsed ? "expanded" : ""}"><header class="topbar"><div class="breadcrumbs"><button class="mobile-menu icon-button" data-action="menu" aria-label="Buka navigasi">${icon("menu")}</button><span class="breadcrumb-home">Portal Karya</span>${icon("chevron")}<span>${["baru", "ciptaan", "draft"].includes(route()) ? "Hak Cipta" + icon("chevron") : ""}${escape(pages[route()] || "Halaman tidak ditemukan")}</span></div><div class="topbar-actions"><button class="help-top" data-action="help">${icon("help")}<span>Bantuan</span></button><span class="top-divider"></span><button class="icon-button notification" data-action="notifications" aria-label="Lihat notifikasi">${icon("bell")}<span></span></button><div class="profile-wrap"><button class="profile" data-action="profile" aria-expanded="${userMenuOpen}"><span class="avatar">AK</span><span class="profile-text">Akun Kreator<small>Akun personal</small></span>${icon("down")}</button>${userMenuOpen ? `<div class="profile-menu"><small>SESI DEMO LOKAL</small><strong>Akun Kreator</strong><button data-action="logout">${icon("logout")} Keluar</button></div>` : ""}</div></div></header><main id="main-content" tabindex="-1">${content}</main><footer class="footer"><span>© ${new Date().getFullYear()} Karya. Ruang aman untuk ide Anda.</span><span>Prototipe lokal <i></i> Fase 1 <span class="footer-version">v0.1.0</span></span></footer></div>`;
+  return `${sidebar()}<div class="main-shell ${collapsed ? "expanded" : ""}"><header class="topbar"><div class="breadcrumbs"><button class="mobile-menu icon-button" data-action="menu" aria-label="Buka navigasi">${icon("menu")}</button><span class="breadcrumb-home">Portal Sapatri</span>${icon("chevron")}<span>${["baru", "ciptaan", "draft"].includes(route()) ? "Hak Cipta" + icon("chevron") : ""}${escape(pages[route()] || "Halaman tidak ditemukan")}</span></div><div class="topbar-actions"><button class="help-top" data-action="help">${icon("help")}<span>Bantuan</span></button><span class="top-divider"></span><button class="icon-button notification" data-action="notifications" aria-label="Lihat notifikasi">${icon("bell")}<span></span></button><div class="profile-wrap"><button class="profile" data-action="profile" aria-expanded="${userMenuOpen}"><span class="avatar">AK</span><span class="profile-text">Akun Kreator<small>Akun personal</small></span>${icon("down")}</button>${userMenuOpen ? `<div class="profile-menu"><small>SESI DEMO LOKAL</small><strong>Akun Kreator</strong><button data-action="logout">${icon("logout")} Keluar</button></div>` : ""}</div></div></header><main id="main-content" tabindex="-1">${content}</main><footer class="footer"><span>© ${new Date().getFullYear()} Sapatri. Ruang aman untuk ide Anda.</span><span>Kota Bekasi <i></i> Data feeder <span class="footer-version">v0.2.0</span></span></footer></div>`;
 }
 
-function dashboard() {
-  return `<div class="page-heading"><div><div class="eyebrow">RUANG KREATIF ANDA</div><h1>Setiap karya, punya cerita<span class="coral">.</span></h1><p>Selamat datang, Kreator. Mulai langkah untuk melindungi karya Anda.</p></div><span class="demo-pill"><span></span> Mode prototipe</span></div><section class="welcome-hero"><div class="hero-content"><span class="hero-eyebrow">IDE ANDA BERHARGA</span><h2>Ciptakan dengan bebas.<br>Lindungi dengan mudah.</h2><p>Mulai permohonan pencatatan hak cipta Anda<br>dalam tiga langkah sederhana.</p><a class="button primary" href="#/baru">${icon("plus")} Buat Permohonan Baru ${icon("arrow")}</a><span class="hero-caption">${icon("shield")} Langkah kecil untuk karya yang berarti.</span></div>${art()}</section><section class="stats-grid" aria-label="Ringkasan permohonan">${[
-    ["file", "Total Permohonan", "Seluruh permohonan Anda", "peach"],
-    ["copy", "Draft Permohonan", "Belum diajukan", "purple"],
-    ["shield", "Permohonan Diajukan", "Dalam proses pencatatan", "green"],
-    ["wallet", "Menunggu Pembayaran", "Belum ada tagihan", "yellow"],
-  ]
-    .map(
-      ([i, title, detail, color]) =>
-        `<article class="stat-card"><div class="stat-head"><span>${title}</span><span class="stat-icon ${color}">${icon(i)}</span></div><div class="stat-number">0<span>permohonan</span></div><div class="stat-description"><span class="tiny-dot ${color}"></span>${detail}</div></article>`,
-    )
-    .join(
-      "",
-    )}</section><div class="dashboard-columns"><section class="card recent-card"><div class="card-header"><div><h2>Permohonan terbaru</h2><p>Perjalanan karya Anda dimulai di sini.</p></div><a class="text-link" href="#/ciptaan">Lihat semua ${icon("arrow")}</a></div><div class="empty-state"><div class="empty-art">${icon("file")}<span>${icon("plus")}</span></div><h3>Belum ada permohonan</h3><p>Ide hebat layak mendapat perlindungan.<br>Daftarkan karya pertama Anda sekarang.</p><a class="button secondary" href="#/baru">${icon("plus")} Mulai permohonan</a></div><div class="card-note">${icon("info")} Fitur detail dashboard direncanakan di fase 5</div></section><section class="card journey-card"><div class="card-header"><div><h2>Tiga langkah, satu tujuan</h2><p>Kenali alur permohonan hak cipta.</p></div><span class="small-icon">${icon("spark")}</span></div><ol class="journey"><li><span class="journey-number">01</span><div><h3>Ceritakan karya Anda</h3><p>Lengkapi jenis, judul, dan detail<br>karya yang ingin dicatatkan.</p><span class="available-tag">Tersedia di fase 1</span></div></li><li><span class="journey-number">02</span><div><h3>Kenalkan penciptanya</h3><p>Tambahkan data pencipta dan<br>pemegang hak cipta.</p><span class="planned-tag">Direncanakan di fase 3</span></div></li><li><span class="journey-number">03</span><div><h3>Lengkapi dokumen</h3><p>Unggah lampiran pendukung<br>dan ajukan permohonan Anda.</p><span class="planned-tag">Direncanakan di fase 4</span></div></li></ol></section></div><section class="resource-strip"><div class="resource-icon">${icon("book")}</div><div><h3>Baru pertama kali mengajukan?</h3><p>Pelajari alur, persyaratan, dan tahapan pengembangan portal.</p></div><button class="text-link" data-action="guide">Lihat panduan ${icon("arrow")}</button></section>`;
-}
+function dashboard() { return dashboardTemplate(); }
 
 function field(
   id: string,
@@ -218,7 +206,7 @@ function roadmap() {
 }
 
 function login() {
-  return `<div class="login-page"><section class="login-story"><a class="brand" href="#/login">${logo}</a><div class="login-story-content"><span class="hero-eyebrow">UNTUK IDE YANG MENJADI NYATA</span><h1>Karya Anda.<br>Cerita Anda.<br><span>Hak Anda.</span></h1><p>Setiap gagasan layak mendapat ruang.<br>Setiap karya layak mendapat perlindungan.</p>${art()}<div class="login-story-caption">${icon("shield")} Ruang baru untuk perjalanan kreatif Anda.</div></div><div class="login-story-footer">© ${new Date().getFullYear()} Karya <span>Portal Hak Cipta</span></div></section><section class="login-form-side"><div class="login-top"><span>Belum punya akun?</span><button data-action="register" class="text-link">Buat akun ${icon("arrow")}</button></div><div class="login-form-container"><span class="login-welcome">SELAMAT DATANG DI KARYA</span><h2>Ruang karya Anda<br>menunggu.</h2><p>Masuk untuk mulai perjalanan melindungi karya.</p><form id="login-form"><div class="form-field"><label for="email">Alamat email</label><div class="input-with-icon">${icon("mail")}<input id="email" type="email" name="email" autocomplete="username" placeholder="nama@email.com" required /></div></div><div class="form-field"><label for="password">Kata sandi</label><div class="input-with-icon">${icon("lock")}<input id="password" type="password" name="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required /><button type="button" class="password-toggle" data-action="password" aria-label="Tampilkan kata sandi" aria-pressed="false">${icon("eye")}</button></div></div><div class="login-options"><span>${icon("lock")} Sesi demo lokal</span><button type="button" data-action="forgot" class="text-link">Lupa kata sandi?</button></div><button type="submit" class="button primary login-submit">Masuk ${icon("arrow")}</button></form><div class="login-divider"><span>atau lanjutkan dengan</span></div><button class="button secondary sso-button" data-action="sso">${icon("shield")} Masuk dengan SSO <span>Segera</span></button><p class="verification-text">Belum menerima email verifikasi? <button class="text-link" data-action="verify">Kirim ulang</button></p><div class="demo-box"><span class="section-icon">${icon("spark")}</span><div><strong>Jelajahi tanpa akun</strong><p>Prototipe fase 1 · Tidak terhubung ke layanan resmi.</p></div><button data-action="demo" class="text-link">Coba demo ${icon("arrow")}</button></div><p class="login-disclaimer">Login menggunakan email berformat valid dan kata sandi apa pun.<br>Gunakan data contoh, bukan kata sandi asli.</p></div><button class="login-help" data-action="help">${icon("help")} Perlu bantuan? <strong>Hubungi helpdesk</strong>${icon("arrow")}</button></section></div>`;
+  return `<div class="login-page"><section class="login-story"><a class="brand" href="#/login">${logo}</a><div class="login-story-content"><span class="hero-eyebrow">UNTUK IDE YANG MENJADI NYATA</span><h1>Karya Anda.<br>Cerita Anda.<br><span>Hak Anda.</span></h1><p>Setiap gagasan layak mendapat ruang.<br>Setiap karya layak mendapat perlindungan.</p>${art()}<div class="login-story-caption">${icon("shield")} Ruang baru untuk perjalanan kreatif Anda.</div></div><div class="login-story-footer">© ${new Date().getFullYear()} Sapatri <span>Portal Inovasi dan Hak Cipta</span></div></section><section class="login-form-side"><div class="login-top"><span>Belum punya akun?</span><button data-action="register" class="text-link">Buat akun ${icon("arrow")}</button></div><div class="login-form-container"><span class="login-welcome">SELAMAT DATANG DI SAPATRI</span><h2>Ruang karya Anda<br>menunggu.</h2><p>Masuk untuk mulai perjalanan melindungi karya.</p><form id="login-form"><div class="form-field"><label for="email">Alamat email</label><div class="input-with-icon">${icon("mail")}<input id="email" type="email" name="email" autocomplete="username" placeholder="nama@email.com" required /></div></div><div class="form-field"><label for="password">Kata sandi</label><div class="input-with-icon">${icon("lock")}<input id="password" type="password" name="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required /><button type="button" class="password-toggle" data-action="password" aria-label="Tampilkan kata sandi" aria-pressed="false">${icon("eye")}</button></div></div><div class="login-options"><span>${icon("lock")} Sesi demo lokal</span><button type="button" data-action="forgot" class="text-link">Lupa kata sandi?</button></div><button type="submit" class="button primary login-submit">Masuk ${icon("arrow")}</button></form><div class="login-divider"><span>atau lanjutkan dengan</span></div><button class="button secondary sso-button" data-action="sso">${icon("shield")} Masuk dengan SSO <span>Segera</span></button><p class="verification-text">Belum menerima email verifikasi? <button class="text-link" data-action="verify">Kirim ulang</button></p><div class="demo-box"><span class="section-icon">${icon("spark")}</span><div><strong>Jelajahi tanpa akun</strong><p>Lihat sebaran inovasi dan ringkasan data Kota Bekasi.</p></div><button data-action="demo" class="text-link">Coba demo ${icon("arrow")}</button></div><p class="login-disclaimer">Login menggunakan email berformat valid dan kata sandi apa pun.<br>Gunakan data contoh, bukan kata sandi asli.</p></div><button class="login-help" data-action="help">${icon("help")} Perlu bantuan? <strong>Hubungi helpdesk</strong>${icon("arrow")}</button></section></div>`;
 }
 
 function modal(title: string, content: string) {
@@ -254,8 +242,10 @@ function modal(title: string, content: string) {
 }
 
 function render() {
+  disposeDashboard?.();
+  disposeDashboard = undefined;
   let page = route();
-  if (!authenticated && page !== "login") {
+  if (!authenticated && !["login", "dashboard", "ciptaan"].includes(page)) {
     location.hash = "/login";
     return;
   }
@@ -263,20 +253,21 @@ function render() {
     location.hash = "/dashboard";
     return;
   }
-  document.title = `${page === "login" ? "Masuk" : pages[page] || "Halaman tidak ditemukan"} — Karya`;
+  document.title = `${page === "login" ? "Masuk" : pages[page] || "Halaman tidak ditemukan"} — Sapatri`;
   const content =
     page === "dashboard"
       ? dashboard()
       : page === "baru"
         ? newApplication()
         : page === "ciptaan" || page === "draft"
-          ? tablePage(page === "draft")
+          ? page === "ciptaan" ? dashboardTemplate(true) : tablePage(true)
           : page === "roadmap"
             ? roadmap()
             : pages[page]
               ? plannedPage()
               : `<section class="card planned-page"><h1>Halaman tidak ditemukan</h1><a class="button primary" href="#/dashboard">Kembali ke Dashboard</a></section>`;
   app.innerHTML = `<a class="skip-link" href="#main-content">Lewati ke konten</a>${page === "login" ? login() : shell(content)}`;
+  if (page === "dashboard" || page === "ciptaan") disposeDashboard = mountDashboard();
   document
     .querySelectorAll<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -314,7 +305,7 @@ function render() {
 
 function signIn() {
   authenticated = true;
-  sessionStorage.setItem("karya-demo", "true");
+  sessionStorage.setItem("sapatri-demo", "true");
   location.hash = "/dashboard";
 }
 function focusStep() {
@@ -349,7 +340,7 @@ document.addEventListener("click", (event) => {
     render();
   } else if (action === "logout") {
     authenticated = false;
-    sessionStorage.removeItem("karya-demo");
+    sessionStorage.removeItem("sapatri-demo");
     Object.keys(fields).forEach((key) => delete fields[key]);
     step = 1;
     userMenuOpen = false;
@@ -385,12 +376,12 @@ document.addEventListener("click", (event) => {
   else if (action === "help")
     modal(
       "Halo, kami siap membantu.",
-      `<p>Ini adalah prototipe Karya fase 1. Jelajahi dashboard, pilih <strong>Permohonan Baru</strong>, dan coba tiga langkah formulir.</p><div class="help-detail">${icon("clock")} Helpdesk dan kontak layanan<br><strong>Direncanakan di fase 5</strong></div><p class="muted">Belum ada layanan kontak aktif pada prototipe lokal.</p>`,
+      `<p>Ini adalah Sapatri, portal inovasi dan hak cipta Kota Bekasi. Jelajahi dashboard, pilih <strong>Permohonan Baru</strong>, dan coba tiga langkah formulir.</p><div class="help-detail">${icon("clock")} Helpdesk dan kontak layanan<br><strong>Direncanakan di fase 5</strong></div><p class="muted">Belum ada layanan kontak aktif pada prototipe lokal.</p>`,
     );
   else if (action === "guide")
     modal(
       "Mulai dari sebuah karya",
-      `<ol class="guide-list"><li><strong>Detail permohonan</strong><p>Kenalkan jenis, judul, dan uraian karya.</p></li><li><strong>Pencipta dan pemegang hak</strong><p>Pengelolaan identitas direncanakan di fase 3.</p></li><li><strong>Lampiran dan pengiriman</strong><p>Dokumen pendukung dan pengajuan direncanakan di fase 4.</p></li></ol><p>Validasi formulir direncanakan di fase 2. Tabel dan dashboard lengkap direncanakan di fase 5.</p>`,
+      `<ol class="guide-list"><li><strong>Detail permohonan</strong><p>Kenalkan jenis, judul, dan uraian karya.</p></li><li><strong>Pencipta dan pemegang hak</strong><p>Pengelolaan identitas direncanakan di fase 3.</p></li><li><strong>Lampiran dan pengiriman</strong><p>Dokumen pendukung dan pengajuan direncanakan di fase 4.</p></li></ol><p>Validasi formulir direncanakan di fase 2. Dashboard feeder tersedia dengan peta dan filter kecamatan.</p>`,
     );
   else if (["sso", "forgot", "verify", "register"].includes(action || ""))
     modal(
@@ -399,7 +390,7 @@ document.addEventListener("click", (event) => {
           sso: "Masuk dengan SSO",
           forgot: "Pulihkan kata sandi",
           verify: "Kirim ulang verifikasi",
-          register: "Buat akun Karya",
+          register: "Buat akun Sapatri",
         } as Record<string, string>
       )[action!],
       `<p>Prototipe ini menggunakan login simulasi. Integrasi akun dan layanan autentikasi tidak termasuk implementasi fase 1–5.</p><p>Tampilan layanan lanjutan: <strong>Direncanakan di fase 5.</strong> Aktivasi autentikasi memerlukan fase backend terpisah.</p><p class="muted">Gunakan “Coba demo” untuk menjelajahi aplikasi. Tidak ada email yang dikirim.</p>`,

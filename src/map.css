@@ -1,0 +1,146 @@
+.bekasi-map {
+  position: relative;
+  min-height: 445px;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #f0ede6;
+}
+.bekasi-map-canvas { position: absolute; inset: 0; }
+.bekasi-map .maplibregl-canvas:focus-visible { outline: 3px solid #98442f; outline-offset: -4px; }
+.bekasi-map-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  color: #684d43;
+  background: #f7f1ec;
+  font-size: var(--font-body, 16px);
+  z-index: 4;
+}
+.bekasi-map-toolbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 60px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.bekasi-map-toolbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 11px;
+  background: #fffc;
+  border: 1px solid #ffffff;
+  box-shadow: 0 2px 12px #493b2814;
+  border-radius: 10px;
+  font-size: var(--font-small, 14px);
+  color: #6d6661;
+  pointer-events: auto;
+  max-width: 100%;
+}
+.bekasi-map-toolbar select {
+  appearance: auto;
+  color: #273242;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  max-width: 215px;
+  padding: 1px 0;
+  font-size: var(--font-body, 16px);
+  font-weight: 600;
+  cursor: pointer;
+}
+.bekasi-map-reset {
+  pointer-events: auto;
+  background: #fffe;
+  min-height: 42px;
+  padding: 10px 13px;
+  box-shadow: 0 2px 12px #493b2814;
+  border-radius: 9px;
+  font-size: var(--font-small, 14px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.bekasi-map-reset:hover { background: #fff; color: #98442f; }
+.bekasi-map .maplibregl-ctrl-top-right { top: 8px; right: 6px; }
+.bekasi-map .maplibregl-ctrl-group { box-shadow: 0 2px 12px #493b2826; border-radius: 9px; }
+.bekasi-map .maplibregl-ctrl-group button { width: 38px; height: 38px; }
+.bekasi-map .maplibregl-ctrl-attrib {
+  background: #ffffffe6;
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--font-small, 14px);
+  line-height: 1.4;
+  padding: 4px 8px;
+  max-width: 100%;
+}
+.bekasi-map .maplibregl-ctrl-attrib a { color: #684b40; text-decoration: underline; }
+.bekasi-map-label {
+  pointer-events: none;
+  width: 101px;
+  text-align: center;
+  color: #302e2d;
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--font-small, 14px);
+  line-height: 1.12;
+  font-weight: 600;
+  text-shadow: 0 0 4px #fff, 0 0 3px #fff, 1px 1px 1px #fff, -1px -1px 1px #fff;
+}
+.bekasi-map-label span { display: block; }
+.bekasi-map-label.compact-label span { display: none; }
+.bekasi-map-label.compact-label { width: auto; }
+.bekasi-map-label.compact-label b { min-width: 24px; padding: 5px; border: 1px solid #ffffff; box-shadow: 0 1px 5px #27324222; }
+.bekasi-map-label b {
+  display: inline-block;
+  margin-top: 3px;
+  min-width: 21px;
+  padding: 2px 4px;
+  color: #433228;
+  background: #ffffffdc;
+  text-shadow: none;
+  border-radius: 5px;
+  line-height: 1;
+  font-size: var(--font-small, 14px);
+}
+.bekasi-map-label.is-selected b { color: #fff; background: #273242; }
+.bekasi-map .maplibregl-popup { z-index: 3; }
+.bekasi-map-tooltip { pointer-events: none; }
+.bekasi-map-tooltip .maplibregl-popup-content {
+  pointer-events: none;
+  border-radius: 11px;
+  box-shadow: 0 5px 24px #27324229;
+  padding: 13px 16px;
+  color: #273242;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.4;
+}
+.bekasi-map-tooltip strong { display: block; margin-bottom: 4px; font-size: var(--font-body, 16px); }
+.bekasi-map-tooltip span { display: block; color: #606b78; font-size: var(--font-small, 14px); }
+.bekasi-map-status {
+  position: absolute;
+  bottom: 55px;
+  left: 12px;
+  max-width: min(300px, calc(100% - 24px));
+  border: 1px solid #e5d6c3;
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: #fff8e9ef;
+  font-size: var(--font-small, 14px);
+  line-height: 1.4;
+  color: #705332;
+  pointer-events: none;
+}
+.bekasi-map-status[hidden] { display: none; }
+@media (max-width: 600px) {
+  .bekasi-map { min-height: 420px; }
+  .bekasi-map-toolbar { left: 10px; top: 10px; gap: 6px; flex-wrap: wrap; }
+  .bekasi-map-toolbar label { padding: 6px 9px; }
+  .bekasi-map-toolbar select { max-width: 180px; }
+  .bekasi-map-reset { padding: 9px 10px; }
+  .bekasi-map-label { width: 89px; }
+  .bekasi-map .maplibregl-ctrl-attrib { font-size: var(--font-small, 14px); }
+}
