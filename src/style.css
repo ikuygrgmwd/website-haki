@@ -188,7 +188,7 @@ h3 {
   font-family: var(--heading);
   font-size: 41px;
   line-height: 43px;
-  letter-spacing: -4px;
+  letter-spacing: 0;
   color: #ef947e;
   font-weight: 700;
   transform: rotate(-3deg);
@@ -201,14 +201,14 @@ h3 {
   font-family: var(--heading);
   font-weight: 700;
   font-size: 30px;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   line-height: 31px;
 }
 .brand-word > span {
   font:
     500 8px "DM Sans",
     sans-serif;
-  letter-spacing: 2.3px;
+  letter-spacing: 0;
   display: block;
   color: #aab1bd;
   margin-top: 5px;
@@ -269,7 +269,7 @@ h3 {
 .nav-label {
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 1.6px;
+  letter-spacing: 0;
   color: #7e8c9f;
   margin: 0 13px 13px;
 }
@@ -551,7 +551,7 @@ h3 {
   display: block;
   color: var(--muted);
   font-size: 9px;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 .profile-menu strong {
   font-size: 13px;
@@ -584,13 +584,13 @@ main {
 .eyebrow {
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 1.8px;
+  letter-spacing: 0;
   color: #939aa6;
   margin-bottom: 11px;
 }
 h1 {
   font-size: 26px;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -639,14 +639,14 @@ h1 {
   font-size: 9px;
   color: #a17460;
   font-weight: 600;
-  letter-spacing: 1.8px;
+  letter-spacing: 0;
   margin-bottom: 15px;
 }
 .hero-content h2 {
   font-size: 28px;
   line-height: 1.4;
   font-weight: 600;
-  letter-spacing: -1.1px;
+  letter-spacing: 0;
   color: #34404a;
 }
 .hero-content p {
@@ -723,7 +723,7 @@ h1 {
   font-size: 15px;
   font-weight: 700;
   color: #565e5e;
-  letter-spacing: -0.7px;
+  letter-spacing: 0;
 }
 .paper-lines {
   margin-top: 18px;
@@ -910,7 +910,7 @@ h1 {
 }
 .card-header h2 {
   font-size: 13px;
-  letter-spacing: -0.2px;
+  letter-spacing: 0;
   font-weight: 600;
 }
 .card-header p {
@@ -1168,7 +1168,7 @@ h1 {
   font-size: 23px;
   font-weight: 600;
   margin-top: 5px;
-  letter-spacing: -0.6px;
+  letter-spacing: 0;
 }
 .fee small {
   font-size: 8px;
@@ -1284,7 +1284,7 @@ h1 {
 .form-section-heading h2 {
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: -0.3px;
+  letter-spacing: 0;
 }
 .form-section-heading p {
   font-size: 11px;
@@ -1495,7 +1495,7 @@ th {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-size: 9px;
-  letter-spacing: 0.7px;
+  letter-spacing: 0;
   color: #8b95a3;
   font-weight: 500;
 }
@@ -1537,7 +1537,7 @@ td .empty-state {
 }
 .planned-page h2 {
   font-size: 25px;
-  letter-spacing: -0.7px;
+  letter-spacing: 0;
   margin-bottom: 14px;
 }
 .planned-page p {
@@ -1614,7 +1614,7 @@ td .empty-state {
 }
 .modal h2 {
   font-size: 21px;
-  letter-spacing: -0.6px;
+  letter-spacing: 0;
 }
 .modal-content {
   margin: 15px 0 23px;
@@ -1700,12 +1700,12 @@ td .empty-state {
 .login-story .hero-eyebrow {
   color: #c9a896;
   font-size: 9px;
-  letter-spacing: 2px;
+  letter-spacing: 0;
   margin-bottom: 22px;
 }
 .login-story h1 {
   font-size: 52px;
-  letter-spacing: -2.8px;
+  letter-spacing: 0;
   font-weight: 500;
   line-height: 1.24;
 }
@@ -1777,7 +1777,7 @@ td .empty-state {
 .login-welcome {
   display: block;
   font-size: 9px;
-  letter-spacing: 1.8px;
+  letter-spacing: 0;
   font-weight: 600;
   color: #b08b74;
   margin-bottom: 16px;
@@ -1785,7 +1785,7 @@ td .empty-state {
 .login-form-container h2 {
   font-size: 33px;
   line-height: 1.4;
-  letter-spacing: -1.1px;
+  letter-spacing: 0;
   font-weight: 600;
 }
 .login-form-container > p:first-of-type {
@@ -2385,7 +2385,7 @@ td .empty-state {
   }
   .eyebrow {
     font-size: 8px;
-    letter-spacing: 1.4px;
+    letter-spacing: 0;
   }
   .page-heading .demo-pill {
     font-size: 9px;
