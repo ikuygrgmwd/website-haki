@@ -1,56 +1,50 @@
-# PELITA Kota Bekasi
+# Karya — Portal Hak Cipta
 
-Pemetaan Inovasi Teknologi Tepat Guna Kota Bekasi. Portal publik dan layanan hak cipta yang dikembangkan dari aplikasi HAKI sebelumnya, menggunakan Vite dan TypeScript.
+An original Indonesian copyright portal prototype. **Phase 1 only**, with local mock state and no backend or official-service integration.
 
-## Menjalankan aplikasi
+## Run locally
 
-Gunakan Node.js 22.12 atau versi lebih baru.
+Requires Node.js 20.19+ or 22.12+.
 
 ```sh
 npm install
 npm run dev
 ```
 
-Buka alamat lokal yang ditampilkan Vite. Jika port 5173 sudah digunakan, Vite akan memilih port berikutnya.
+Open the localhost URL printed by Vite. Select **Coba demo**, or enter a valid-format example email and any nonempty example password. Never enter real credentials. Mock login is kept in sessionStorage for the current tab; logout clears it. It is a UI demo, not secure authentication.
 
 ```sh
 npm run build
 npm run preview
 ```
 
-## Halaman
+## Implemented in Phase 1
 
-- `#/home`: pengantar PELITA, statistik ilustrasi, kategori inovasi, dan berita pilihan.
-- `#/usulkan-inovasi`: formulir usulan, validasi isian, dokumen PDF/DOC/DOCX maksimal 10 MB, dan konfirmasi simulasi.
-- `#/berita`: enam berita ilustrasi, pencarian, dan filter kategori.
-- `#/berita/<slug>`: detail berita ilustrasi.
-- `#/petunjuk-teknis`: unduhan PDF asli Petunjuk Teknis Lomba TTG Kota Bekasi 2026.
-- `#/hubungi-kami`: kontak dan peta MapLibre dengan marker kantor.
-- `#/login` dan `#/daftar`: halaman akun terpisah dengan validasi konfirmasi password.
-- `#/dashboard` dan rute layanan hak cipta sebelumnya: dasbor dan alur tiga tahap permohonan tetap tersedia setelah masuk simulasi.
+- Vite + TypeScript with bundled DM Sans and Plus Jakarta Sans fonts.
+- Login, password visibility, mock session, logout, and informative dialogs for future account services.
+- Hash-based routes, login guard, unknown-route fallback, breadcrumbs, profile menu, notifications placeholder, and help dialog.
+- Original responsive dashboard, empty application summary, journey guide, collapsible desktop sidebar, mobile drawer.
+- All requested navigation routes and a phase roadmap.
+- Three navigable application steps. Step 1 includes all eight visible fields, minimal illustrative select options, and a browser-native date input. Values remain in memory while the page stays open; they are not persisted through reloads.
+- Step 2 structured creator/holder/representative placeholders. Step 3 lists all seven planned attachments.
+- Previous, Next, and Save as Draft controls. Saving displays an honest planned-feature dialog; it does not save or report success. Document buttons likewise explain planned downloads.
+- Labels, focus indicators, semantic navigation, keyboard-operable dialogs, skip link, and reduced-motion support.
 
-Rute lama `#/semangat` dialihkan ke `#/usulkan-inovasi`. Halaman dan menu Media tidak ditambahkan. Aplikasi lama belum memiliki peta inovasi tersendiri.
+## Planned
 
-## Data dan layanan simulasi
+| Phase | Scope                                                                                                                                        |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2     | Complete field behavior, required validation, full dropdown lists, advanced date picker, progress persistence and draft success simulation.  |
+| 3     | Representative selection, creator/holder tables, add/edit/delete, and modal steps for legal entity, identity and address.                    |
+| 4     | File/link uploads, document templates, draft saving, confirmation and submission success.                                                    |
+| 5     | Full dashboard, sample records, search/filter/sort, additional service pages and further responsive/accessibility/loading/error refinements. |
 
-Berita, statistik, dan pilihan Posyantek merupakan data contoh. Formulir usulan tidak mengirim atau menyimpan dokumen. Pendaftaran tidak membuat akun resmi. Masuk menerima email atau username dan password contoh yang tidak kosong. Status sesi simulasi disimpan pada `sessionStorage` menggunakan `pelita-demo`; password tidak disimpan. Keluar menghapus sesi tersebut.
+The brief mentions Phase 2 once for creator/holder management, but its dedicated Phase 3 and detailed build instructions consistently assign it to **Phase 3**, used here. Account registration, password recovery, verification email and SSO show explicit placeholders; real authentication needs separately scoped backend work beyond these frontend phases. The fee is example content specified by the brief, not a verified current fee.
 
-Layanan hak cipta mempertahankan batasan prototipe sebelumnya: data detail permohonan tersedia dalam memori selama halaman terbuka; pengelolaan pencipta, lampiran, penyimpanan draf, dan pengajuan resmi masih direncanakan. Gunakan data contoh.
+## Project structure
 
-## Aset dan peta
+- `src/main.ts`: routing, page templates, icons and local UI interactions.
+- `src/style.css`: responsive design and visual identity.
+- `public/favicon.svg`: original Karya favicon.
 
-PDF asli disimpan di `public/downloads/petunjuk-teknis-lomba-ttg-kota-bekasi-2026.pdf`.
-
-Logo dan foto dokumentasi di `public/images/` berasal dari portal referensi [PELITA Kota Bekasi](https://pelita.bekasikota.online/). Foto digunakan untuk mendampingi konten berita ilustrasi.
-
-Peta menggunakan MapLibre GL JS dan tile OpenStreetMap, dengan koordinat kantor dari peta portal referensi: `106.9950606, -6.2365671`. Peta memerlukan internet, sedangkan gambar dan PDF dilayani dari proyek. Worker MapLibre dibundel melalui pipeline worker Vite untuk pengembangan dan produksi. Tidak diperlukan API key untuk konfigurasi ini.
-
-## Struktur
-
-- `src/main.ts`: router hash, sesi simulasi, dan layanan hak cipta sebelumnya.
-- `src/portal.ts`: halaman publik, formulir, berita, dan halaman akun.
-- `src/data.ts`: data contoh, kontak, dan tautan unduhan.
-- `src/office-map.ts`: MapLibre, marker, kontrol, serta pembersihan peta saat navigasi.
-- `src/icons.ts`: ikon Lucide dan identitas PELITA.
-- `src/style.css`: desain dasar aplikasi sebelumnya.
-- `src/portal.css`: desain portal publik dan penyesuaian branding.
+No API keys, environment variables, database or external accounts are needed.

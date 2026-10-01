@@ -1,5 +1,5 @@
 {
-  "name": "pelita-kota-bekasi",
+  "name": "karya-copyright-portal",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -14,8 +14,6 @@
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.0",
-    "@fontsource/plus-jakarta-sans": "^5.2.0",
-    "lucide": "^1.49.0",
-    "maplibre-gl": "^6.11.2"
+    "@fontsource/plus-jakarta-sans": "^5.2.0"
   }
 }
