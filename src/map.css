@@ -4,18 +4,18 @@
   isolation: isolate;
   overflow: hidden;
   border-radius: 15px;
-  background: #f0ede6;
+  background: #f1f5f9;
 }
 .bekasi-map-canvas { position: absolute; inset: 0; }
-.bekasi-map .maplibregl-canvas:focus-visible { outline: 3px solid #98442f; outline-offset: -4px; }
+.bekasi-map .maplibregl-canvas:focus-visible { outline: 3px solid var(--primary-hover); outline-offset: -4px; }
 .bekasi-map-loading {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   padding: 28px;
-  color: #684d43;
-  background: #f7f1ec;
+  color: #475569;
+  background: var(--primary-subtle);
   font-size: var(--font-body, 16px);
   z-index: 4;
 }
@@ -36,10 +36,10 @@
   padding: 8px 11px;
   background: #fffc;
   border: 1px solid #ffffff;
-  box-shadow: 0 2px 12px #493b2814;
+  box-shadow: 0 2px 12px #1e293b14;
   border-radius: 10px;
   font-size: var(--font-small, 14px);
-  color: #6d6661;
+  color: #64748b;
   pointer-events: auto;
   max-width: 100%;
 }
@@ -60,15 +60,15 @@
   background: #fffe;
   min-height: 42px;
   padding: 10px 13px;
-  box-shadow: 0 2px 12px #493b2814;
+  box-shadow: 0 2px 12px #1e293b14;
   border-radius: 9px;
   font-size: var(--font-small, 14px);
   font-weight: 600;
   line-height: 1.25;
 }
-.bekasi-map-reset:hover { background: #fff; color: #98442f; }
+.bekasi-map-reset:hover { background: #fff; color: var(--primary-hover); }
 .bekasi-map .maplibregl-ctrl-top-right { top: 8px; right: 6px; }
-.bekasi-map .maplibregl-ctrl-group { box-shadow: 0 2px 12px #493b2826; border-radius: 9px; }
+.bekasi-map .maplibregl-ctrl-group { box-shadow: 0 2px 12px #1e293b26; border-radius: 9px; }
 .bekasi-map .maplibregl-ctrl-group button { width: 38px; height: 38px; }
 .bekasi-map .maplibregl-ctrl-attrib {
   background: #ffffffe6;
@@ -78,12 +78,12 @@
   padding: 4px 8px;
   max-width: 100%;
 }
-.bekasi-map .maplibregl-ctrl-attrib a { color: #684b40; text-decoration: underline; }
+.bekasi-map .maplibregl-ctrl-attrib a { color: #475569; text-decoration: underline; }
 .bekasi-map-label {
   pointer-events: none;
   width: 101px;
   text-align: center;
-  color: #302e2d;
+  color: #1e293b;
   font-family: 'DM Sans', sans-serif;
   font-size: var(--font-small, 14px);
   line-height: 1.12;
@@ -99,7 +99,7 @@
   margin-top: 3px;
   min-width: 21px;
   padding: 2px 4px;
-  color: #433228;
+  color: #1e293b;
   background: #ffffffdc;
   text-shadow: none;
   border-radius: 5px;

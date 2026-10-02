@@ -1,6 +1,6 @@
 export interface DistrictCount { name: string; count: number }
 export interface LegendRange { min: number; max: number; color: string; label: string }
-const COLORS = ['#f8d9ce', '#edaf9b', '#d77c63', '#98442f']
+const COLORS = ['#dbeafe', '#93c5fd', '#3b82f6', '#1d4ed8']
 const ZERO_COLOR = '#e3e5e8'
 
 /** One shared, integer-only scale for the map, legend, and chart. */

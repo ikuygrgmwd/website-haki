@@ -98,7 +98,7 @@ export async function createBekasiMap(
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     map = new maplibregl.Map({
       container: canvasHost,
-      style: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#f0ede6' } }] },
+      style: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#f1f5f9' } }] },
       center: bounds.getCenter(),
       zoom: 11,
       minZoom: 9,
@@ -136,8 +136,8 @@ export async function createBekasiMap(
     activeMap.addSource('outside', { type: 'geojson', data: outsideMask(city) })
     activeMap.addLayer({ id: 'outside-dim', type: 'fill', source: 'outside', paint: { 'fill-color': '#d9dce1', 'fill-opacity': .72 } })
     activeMap.addLayer({ id: 'district-fill', type: 'fill', source: 'districts', paint: { 'fill-color': ['get', 'color'], 'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, .90] } })
-    activeMap.addLayer({ id: 'district-lines', type: 'line', source: 'districts', paint: { 'line-color': '#fffaf5', 'line-width': 1.7, 'line-opacity': 1 } })
-    activeMap.addLayer({ id: 'city-outline', type: 'line', source: 'city', paint: { 'line-color': '#754b40', 'line-width': 3, 'line-opacity': .92 } })
+    activeMap.addLayer({ id: 'district-lines', type: 'line', source: 'districts', paint: { 'line-color': '#f8fafc', 'line-width': 1.7, 'line-opacity': 1 } })
+    activeMap.addLayer({ id: 'city-outline', type: 'line', source: 'city', paint: { 'line-color': '#1e40af', 'line-width': 3, 'line-opacity': .92 } })
     activeMap.addLayer({ id: 'district-selected', type: 'line', source: 'districts', filter: ['==', ['get', 'name'], currentSelection ?? ''], paint: { 'line-color': '#273242', 'line-width': 3.7 } })
     activeMap.addLayer({ id: 'district-hover', type: 'line', source: 'districts', paint: { 'line-color': '#273242', 'line-width': 3, 'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0] } })
 
