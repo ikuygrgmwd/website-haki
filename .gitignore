@@ -13,3 +13,4 @@ private-data/
 *.db
 *.db-*
 .migration-work/
+server/generated/

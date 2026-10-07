@@ -4,6 +4,9 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
+    "prepare": "node scripts/build-sanitizer.mjs",
+    "prebuild": "node scripts/build-sanitizer.mjs",
+    "pretest": "node scripts/build-sanitizer.mjs",
     "dev": "node scripts/dev.mjs",
     "build": "tsc && vite build",
     "preview": "vite preview --host 127.0.0.1",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
+    "esbuild": "0.28.2",
     "playwright": "^1.63.0",
     "typescript": "~5.9.3",
     "vite": "^7.1.0"

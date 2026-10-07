@@ -4,7 +4,7 @@ import { createServer } from 'node:http';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 import sharp from 'sharp';
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from './generated/sanitize-html.mjs';
 import { openStore, uid, token, digest, now, publicUser, hashPassword, verifyPassword } from './store.mjs';
 const fail = (message, status = 400) => { throw Object.assign(new Error(message), { status }); };
 // Drain every validation query before rollback/releasing a pooled connection.
