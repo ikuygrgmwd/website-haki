@@ -1,82 +1,114 @@
 # Sapatri — Portal Inovasi dan Hak Cipta Kota Bekasi
 
-Dashboard inovasi dengan tema koral/navy, DM Sans dan Plus Jakarta Sans, memakai arsitektur Vite + TypeScript yang sudah ada. Dashboard dan daftar inovasi dapat dibuka tanpa login. Formulir permohonan dan autentikasi lama tetap berupa prototipe lokal; login demo bukan pengamanan data pribadi.
+Portal Vite + TypeScript dengan backend Node.js. SQLite digunakan untuk lokal; PostgreSQL dan Supabase Storage didukung untuk Vercel. Antarmuka menggunakan Bahasa Indonesia dan dua role tetap: Admin dan User.
+
+## Persiapan Supabase dan Vercel
+
+Panduan lengkap: [docs/deployment.md](docs/deployment.md).
+
+Jalankan `npm run setup:local`, isi konfigurasi Supabase pada `.env.local`, lalu
+jalankan `npm run cloud:check`. File rahasia, database lokal, dan backup tidak
+masuk Git maupun deployment. Build tidak menjalankan migrasi otomatis.
+
+Sesudah project Vercel tertaut dan environment diverifikasi, gunakan
+`npm run db:migrate`, `npm run storage:setup`, lalu pilih impor SQLite
+(`npm run db:import:sqlite`) atau master wilayah kosong (`npm run db:seed:regions`).
+Impor membuat backup, mempertahankan akun/hash password, memindahkan berkas ke
+Storage private, dan menolak menimpa database yang sudah berisi data. Gunakan
+`npm run db:verify -- "path/backup/sapatri.sqlite"` sebelum aplikasi online dipakai.
+
+## Kondisi data saat ini
+
+Aplikasi lokal menggunakan **data demonstrasi**, menggantikan feeder asli:
+
+- 36 contoh pengajuan: 24 Hak Cipta dan 12 Hak Terkait.
+- 6 Draft, 6 Diajukan, 6 Diproses, 6 Perlu Revisi, dan 12 Selesai.
+- 106 pencipta fiktif, tersebar di seluruh 12 kecamatan Kota Bekasi.
+- 108 lampiran PDF contoh, 12 sertifikat dummy, dan 12 catatan pembinaan dengan ilustrasi.
+- Pembinaan mencakup Perorangan, Kelompok, dan Organisasi Posyantek pada kedua layanan.
+- 3 slide carousel dan halaman Tentang HAKI terisi.
+- 3 User demo tambahan. Akun, password, dan sesi pengguna yang sudah ada tetap dipertahankan.
+
+Nama karya, pencipta, status, dokumen, dan kegiatan adalah fiktif. Dokumen PDF diberi penanda DATA DUMMY / BUKAN DOKUMEN RESMI. Gambar merupakan ilustrasi demo, bukan foto kegiatan nyata.
+
+Data feeder sebelumnya dicadangkan di private-data/backups/<waktu>/ sebelum diganti. Database cadangan dibuat memakai API backup SQLite sehingga mencakup data WAL. Feeder mentah dipindahkan ke cadangan privat dan tidak lagi menjadi sumber data aktif. Cadangan mengandung data pribadi: jangan sajikan folder tersebut melalui web.
 
 ## Menjalankan
 
-```sh
+Gunakan Node.js 22.18+ (diverifikasi pada Node 26).
+
+~~~sh
 npm ci
 npm run dev
-npm test
+~~~
+
+Frontend berjalan pada http://127.0.0.1:5173 dan API pada port 3001. Proxy mempertahankan Host agar pemeriksaan asal permintaan tetap berjalan.
+
+Pada database kosong, terminal menampilkan kode penyiapan Admin pertama. Buka #/login, buat Admin, lalu isi data demo jika diperlukan:
+
+~~~sh
+npm run seed:demo
+~~~
+
+Perintah ini mencadangkan database, mengganti karya impor/demo, mempertahankan karya yang dibuat manual serta akun lama, dan mengisi konten demo. Karya feeder yang diganti beserta lampiran/pembinaannya dikeluarkan dari data aktif. Carousel dan Tentang HAKI diganti dengan konten contoh.
+
+Pengisian berulang diblokir untuk mencegah perubahan demo yang sedang dicoba terhapus tanpa sengaja. Untuk sengaja mengatur ulang seluruh contoh demo:
+
+~~~sh
+npm run seed:demo -- --replace-demo
+~~~
+
+Akun demo memakai domain example.test. Email dan password acak akun baru tersedia di private-data/demo-access.json (tidak masuk Git). Perintah ulang tidak mengubah password akun demo yang sudah ada. Admin dapat mereset password melalui Manajemen Pengguna.
+
+## Penyimpanan dan deployment
+
+Pada mode lokal, database, sesi, foto, serta unggahan tersimpan di private-data/sapatri.sqlite. SQLite memakai foreign key dan WAL; berkas disimpan sebagai BLOB. Data bertahan setelah restart. Kata sandi di-hash dengan scrypt.
+
+Variabel lingkungan: SAPATRI_DB, SAPATRI_SETUP_TOKEN, PORT, HOST, dan NODE_ENV=production. Cookie Secure pada mode produksi memerlukan HTTPS.
+
+~~~sh
 npm run build
-npm run preview
-```
+npm start
+~~~
 
-Vite membutuhkan Node.js 20.19+ atau 22.12+. Pengujian TypeScript langsung melalui Node membutuhkan **22.18+** (diverifikasi pada Node 26). Buka URL localhost yang dicetak Vite. Hanya folder `dist/` yang boleh dipublikasikan.
+Perintah start menyajikan dist beserta API pada port 3001. Preview Vite hanya menyajikan frontend. Hosting mode SQLite memerlukan volume persisten dan HTTPS. Pada Vercel, `api/index.mjs` menjalankan API dengan PostgreSQL dan Storage; frontend disajikan dari `dist`. Konfigurasi yang belum lengkap menghasilkan error, tanpa fallback ke SQLite di Vercel. Deployment cloud memerlukan pengujian koneksi nyata setelah environment disiapkan.
 
-## Impor feeder lokal
+## Fitur dan hak akses
 
-```sh
-npm run import:feeder -- "PATH/Form_Isian_Data_Hak_Cipta.xlsx - Form Hak Cipta.tsv"
-```
+- Admin: semua ciptaan, pemilik, edit/status/sertifikat, pengguna, master wilayah, landing page, dan pembinaan.
+- User: CRUD ciptaan sendiri, melanjutkan draft, mengajukan, profil/password sendiri, serta melihat pembinaan/sertifikat milik sendiri.
+- Draft digabung dalam Daftar Ciptaan. Menu musik serta Kelengkapan Pemetaan dihapus.
+- Tabel memiliki pencarian, filter, pengurutan, paginasi, dan aksi. Hak Terkait memakai alur yang sama dengan jenis layanan terpisah.
+- Form mencakup detail, pencipta/pemegang hak, alamat bertingkat, dan lampiran. Draft boleh belum lengkap. Submit memerlukan detail, pemilik, pencipta/pemegang hak beralamat lengkap, serta lampiran identitas, pernyataan, dan contoh. Ini aturan aplikasi awal, bukan klaim persyaratan resmi.
+- Alur status: Draft → Diajukan → Diproses → Selesai. Admin dapat mengembalikan Diproses menjadi Perlu Revisi, atau membuka kembali Selesai menjadi Diproses. Perlu Revisi dapat diajukan ulang.
+- Edit oleh User terhadap data Diajukan/Diproses/Selesai menjadikannya Perlu Revisi. Penghapusan diblokir jika masih dirujuk pembinaan.
+- Penetapan Selesai tidak menerbitkan sertifikat otomatis. Admin mengunggah dokumen setelah tersedia; sertifikat demo hanya contoh.
+- Master wilayah: 1 provinsi, 1 kota, 12 kecamatan, 56 kelurahan. Kode BIG:<objectid> adalah referensi sumber, bukan kode resmi kelurahan, dan masih perlu diverifikasi.
+- Reset password oleh Admin menghasilkan tautan sekali pakai berlaku 15 menit; email otomatis belum dikonfigurasi.
+- Foto maksimal 2 MB, lampiran/sertifikat maksimal 8 MB. Gambar diproses Sharp menjadi WebP; PDF disajikan sebagai unduhan. Berkas yang dilepas dari formulir tidak langsung dihapus; kebijakan pembersihan berkas yatim perlu disiapkan jika volume meningkat.
+- Sesi 12 jam, cookie HttpOnly/SameSite, pemeriksaan origin, token CSRF, pembatasan role/kepemilikan di API, audit aktivitas, dan pemeriksaan versi edit.
 
-Gunakan `--source bekasi-hak-cipta` yang sama saat memperbarui feeder ini; itu juga nilai default. Impor mengganti snapshot sumber terkait, mempertahankan ID internal, dan menghapus relasi yang sudah tidak ada pada snapshot terbaru. Nomor yang sama dari sumber berbeda mempunyai ID berbeda. Impor ulang tidak menambah salinan data. Muat ulang browser setelah mengimpor dan bangun ulang sebelum menerbitkan perubahan.
+## Dashboard dan feeder
 
-- `private-data/feeder-db.json`: model relasional, registri ID, nilai asli, normalisasi, relasi, dan masalah untuk ditinjau.
-- `private-data/<source>.tsv`: arsip sumber asli. Folder ini diabaikan Git, diblokir oleh Vite, dan tidak masuk build.
-- `public/data/innovations.json`: proyeksi publik melalui daftar kolom yang diizinkan. Hanya judul, nomor sumber, ID acak, jumlah, kecamatan dan indikator peninjauan; tanpa nama orang, NIK, alamat, kode pos, email atau telepon.
+Dashboard publik memakai snapshot public/data/innovations.json yang berisi proyeksi contoh karya tanpa identitas/kontak privat. Saat seeding, judul, jumlah pencipta, dan domisili cocok dengan record SQLite. Edit/pengajuan privat sesudahnya tidak otomatis dipublikasikan; dashboard bukan daftar transaksi langsung.
 
-Jangan menaruh feeder mentah di `public/` atau `src/`. Simpan cadangan folder privat secara terbatas untuk mempertahankan registri ID. Akses manajemen data pribadi melalui web memerlukan backend dan otorisasi sungguhan; data privat tidak disajikan oleh prototipe ini.
+Pencarian menyaring semua bagian dashboard. Pilihan kecamatan menyaring kartu ringkasan, ukuran tim, dan daftar karya; peta serta grafik wilayah tetap menghitung seluruh kecamatan sesuai pencarian agar angka dan warna daerah lain tidak berubah saat satu daerah dipilih. Satu karya dapat muncul di beberapa kecamatan berdasarkan domisili pencipta, tetapi total keseluruhan dihitung dari ID karya unik. Pembimbing tidak dihitung sebagai pencipta.
 
-## Angka dan aturan hitung
+Impor feeder asli masih tersedia bila diperlukan nanti:
 
-Snapshot yang disertakan menghasilkan **20 inovasi**, **51 pencipta dengan NIK berformat 16 digit**, **54 relasi pencipta–inovasi**, **2 identitas pencipta belum lengkap**, dan **3 relasi pembimbing**. Validasi format NIK tidak merupakan verifikasi Dukcapil. Pembimbing eksplisit tetap memiliki peran aslinya dan tidak otomatis dihitung sebagai pencipta.
+~~~sh
+npm run import:feeder -- "PATH/data.tsv"
+~~~
 
-Ada **19 inovasi dapat dipetakan**, **1 belum dapat dipetakan**, dan **11 dari 12 kecamatan terwakili**. Medan Satria tetap ditampilkan dengan nilai 0.
+Impor memperbarui snapshot dashboard dan arsip privat; tidak menimpa transaksi SQLite yang sudah dikelola. Jangan menjalankannya jika ingin mempertahankan dataset demo publik. Jangan taruh feeder mentah dalam public atau src.
 
-| Kecamatan | Inovasi unik |
-| --- | ---: |
-| Bekasi Utara | 9 |
-| Mustikajaya | 5 |
-| Rawalumbu | 4 |
-| Bekasi Timur | 3 |
-| Jatiasih | 3 |
-| Bekasi Barat | 2 |
-| Pondok Gede | 2 |
-| Bantargebang | 1 |
-| Bekasi Selatan | 1 |
-| Jatisampurna | 1 |
-| Pondok Melati | 1 |
-| Medan Satria | 0 |
+Peta menggunakan MapLibre dan geometri lokal 12 kecamatan dari sumber BIG; dokumentasi sumber dan lisensi berada di docs/boundaries.md. Tile peta memerlukan internet, sedangkan geometri/statistik tersedia lokal.
 
-Sebaran berdasarkan domisili pencipta. Satu inovasi dapat tercatat di beberapa kecamatan, tetapi hanya sekali dalam kecamatan yang sama. Total keseluruhan dihitung dari ID inovasi unik, sehingga angka kecamatan tidak dijumlahkan sebagai total inovasi. Jika model memiliki `verifiedOriginDistrict` yang valid, lokasi asal terverifikasi diprioritaskan dan dipertahankan saat impor ulang; feeder awal tidak memilikinya.
+## Verifikasi
 
-Ukuran tim dari bagian A adalah 1, 2, 3, 4, dan 5+ pencipta; jumlah inovasi masing-masing **5, 2, 9, 2, 2**. Pembimbing eksplisit disimpan terpisah. Semua kartu, grafik, tooltip, dan daftar memakai subset yang sama berdasarkan pencarian judul/nomor, kecamatan dan kelengkapan pemetaan. Legenda tetap mengikuti rentang dataset penuh (0; 1–2; 3–4; 5–6; 7–9) agar warna konsisten ketika filter berubah.
+~~~sh
+npm test
+npm run test:browser
+~~~
 
-## Peta
-
-MapLibre GL JS menampilkan 12 poligon kecamatan dari **56 kelurahan BIG, edisi Semester 1 2025, melalui Geoportal Kementan**. Geometri didissolve menggunakan kode administrasi Kota Bekasi `32.75`. Rincian sumber, hash snapshot, proses, pemeriksaan topologi dan keterangan lisensi tersedia di [docs/boundaries.md](docs/boundaries.md).
-
-Peta memakai `fitBounds`, batas navigasi/zoom, garis luar kota, garis internal, mask di luar kota, zoom, reset, hover, ketuk dan pilihan kecamatan melalui keyboard. Angka tampil pada poligon; nama juga muncul ketika zoom diperbesar dan di tooltip. MapLibre v6 worker dibundel melalui pipeline worker Vite sesuai [dokumentasi resmi](https://maplibre.org/maplibre-gl-js/docs/). Tile OpenStreetMap memerlukan internet; jika tile gagal, geometri lokal dan statistik tetap tersedia. Gagal memuat geometri/worker menampilkan pesan dan tombol coba lagi, bukan warna 0 inovasi.
-
-## Data yang masih perlu ditinjau
-
-- Dua pencipta tidak memiliki NIK; tidak digabung berdasarkan kemiripan nama.
-- Inovasi No. 19 (JELITA) belum memiliki kecamatan yang dapat dipetakan.
-- Tiga catatan pembimbing memerlukan konfirmasi jika hendak diubah menjadi pencipta.
-- Delapan belas catatan pemegang hak tidak memiliki identitas pasti atau berisi gabungan nama. Data disimpan sebagai pernyataan sumber yang belum diurai, bukan diasumsikan satu orang atau dicocokkan secara samar dengan pencipta. Model mendukung banyak pemegang per inovasi.
-- Variasi judul SEPTiQ pada bagian A/B dipertahankan; penggabungan menggunakan nomor, bukan kesamaan judul.
-- `Rawalumnu` → `Rawalumbu` dan `Pondogede` → `Pondok Gede` dicatat sebagai koreksi beserta sumber verifikasinya; nilai mentah tidak ditimpa.
-- Domisili luar Kota Bekasi dan kontak yang salah format tetap tersimpan untuk pemeriksaan lokal.
-- Feeder tidak menyediakan tanggal, kategori, nomor sertifikat atau status pendaftaran hak cipta. Tidak dibuat tren atau status pendaftaran berdasarkan asumsi.
-
-## Struktur dan verifikasi
-
-- `src/main.ts`: shell, branding, navigasi dan formulir prototipe yang sudah ada.
-- `src/dashboard.ts`, `src/data.ts`: tampilan, filter dan agregasi bersama.
-- `src/map.ts`, `src/map-scale.ts`: peta dan satu sumber rentang warna.
-- `src/style.css`: token ukuran font asli +2px, tanpa penggandaan pada elemen bersarang; `dashboard.css`/`map.css` mengatur tata letak tambahan.
-- `scripts/feeder-lib.mjs`, `scripts/import-feeder.mjs`: impor privat dan proyeksi publik.
-- `tests/feeder.test.mjs`: relasi/idempotensi, normalisasi, privasi, hitungan, filter, rentang warna dan kelengkapan geometri. Uji sumber privat dilewati jika file lokal belum diimpor.
-
-Uji browser mencakup hit-test seluruh 12 poligon, tooltip, klik/filter, ukuran layar 360–1440px, halaman login dan formulir lama, pemulihan kegagalan feeder/peta, data kosong, dan penolakan HTTP terhadap file privat. Pemeriksaan topologi tambahan dapat dijalankan dengan `python scripts/boundaries-build.py --check` dalam lingkungan yang menyediakan Shapely 2.x.
+Pengujian mencakup otorisasi, persistensi, status, file privat, proxy lokal, pengisian demo dan cadangannya, perlindungan akun/karya manual, pengajuan draft demo, statistik, serta alur browser. Pengujian impor feeder privat lama dilewati apabila sumber aslinya telah diarsipkan. Browser test memakai Edge headless, database sementara, dan screenshot di .browser-check/.

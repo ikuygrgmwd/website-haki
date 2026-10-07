@@ -115,17 +115,17 @@ test('choropleth has contiguous numerical ranges and progressively darker colors
   assert.deepEqual(getLegend([]).map(r=>r.label),['0 inovasi']);
 });
 
-test('delivered feeder has consistent known counts and every district filter matches summary/list', () => {
+test('delivered demo has consistent counts and every district filter matches summary/list', () => {
   const data = validateDataset(JSON.parse(readFileSync(new URL('../public/data/innovations.json', import.meta.url))));
   const s = summarize(data.innovations);
-  assert.deepEqual([s.totalInnovations,s.uniqueCreators,s.creatorRelationships,s.unresolvedCreators,s.representedDistricts,s.mappedInnovations,s.unmappedInnovations,s.supervisorRelationships], [20,51,54,2,11,19,1,3]);
-  assert.deepEqual(s.teamSizes.map(t=>t.count), [5,2,9,2,2]);
-  assert.equal(data.innovations.find(i=>i.sourceNumber==='18').reviewFlags.includes('title_variant'),true);
-  assert.equal(data.innovations.find(i=>i.sourceNumber==='19').mappingStatus,'unmapped');
+  assert.equal(data.sourceId, 'sapatri-demo');
+  assert.deepEqual([s.totalInnovations,s.uniqueCreators,s.creatorRelationships,s.unresolvedCreators,s.representedDistricts,s.mappedInnovations,s.unmappedInnovations,s.supervisorRelationships], [36,106,106,0,12,36,0,0]);
+  assert.deepEqual(s.teamSizes.map(t=>t.count), [8,7,7,7,7]);
+  assert.ok(data.innovations.every(i => i.id.startsWith('demo-work-')));
   for (const district of s.districtCounts) assert.equal(filterInnovations(data,{district:district.name}).length,district.count);
-  assert.equal(filterInnovations(data,{query:'SEPTiQ'}).length,1);
+  assert.equal(filterInnovations(data,{query:'PilahKita'}).length,1);
   assert.equal(filterInnovations(data,{query:'nothing matches'}).length,0);
-  assert.equal(summarize([...data.innovations,data.innovations[0]]).totalInnovations,20);
+  assert.equal(summarize([...data.innovations,data.innovations[0]]).totalInnovations,36);
   assert.equal(summarize([]).totalInnovations,0);
 });
 

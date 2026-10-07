@@ -4,19 +4,40 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "node scripts/dev.mjs",
     "build": "tsc && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "import:feeder": "node scripts/import-feeder.mjs",
-    "test": "node --experimental-strip-types --test tests/*.test.*"
+    "seed:demo": "node scripts/seed-demo.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.*",
+    "start": "node --env-file-if-exists=.env.local server/start.mjs",
+    "test:browser": "npm run build && node tests/browser-flow.mjs",
+    "test:storage:browser": "npm run build && node tests/storage-browser.mjs",
+    "setup:local": "node scripts/prepare-local.mjs",
+    "cloud:check": "node --env-file-if-exists=.env.local scripts/check-cloud.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate-schema.mjs",
+    "db:import:sqlite": "node --env-file-if-exists=.env.local scripts/import-sqlite.mjs",
+    "db:verify": "node --env-file-if-exists=.env.local scripts/verify-import.mjs",
+    "db:seed:regions": "node --env-file-if-exists=.env.local scripts/seed-regions.mjs",
+    "storage:setup": "node --env-file-if-exists=.env.local scripts/setup-storage.mjs",
+    "storage:cleanup": "node --env-file-if-exists=.env.local scripts/cleanup-uploads.mjs"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "playwright": "^1.63.0",
     "typescript": "~5.9.3",
     "vite": "^7.1.0"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.0",
     "@fontsource/plus-jakarta-sans": "^5.2.0",
-    "maplibre-gl": "^6.11.2"
+    "@supabase/supabase-js": "^2.117.2",
+    "maplibre-gl": "^6.11.2",
+    "pg": "^8.23.1",
+    "sanitize-html": "^2.18.0",
+    "sharp": "^0.35.5"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

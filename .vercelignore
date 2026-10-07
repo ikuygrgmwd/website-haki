@@ -1,0 +1,8 @@
+private-data/
+.env*
+!.env.example
+.migration-work/
+.browser-check/
+.npm-cache/
+*.sqlite*
+*.db*

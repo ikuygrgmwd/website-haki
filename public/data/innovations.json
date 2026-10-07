@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "sourceId": "bekasi-hak-cipta",
-  "sourceLabel": "Form Isian Data Hak Cipta · Bagian A dan B",
+  "sourceId": "sapatri-demo",
+  "sourceLabel": "Data demonstrasi Sapatri — seluruh karya dan pencipta bersifat fiktif",
   "notes": {
-    "geography": "Sebaran berdasarkan domisili pencipta. Satu inovasi dapat tercatat di beberapa kecamatan.",
-    "teamSize": "Ukuran tim adalah jumlah pencipta tercatat pada bagian A per inovasi. Pendamping dan pembimbing yang ditandai secara eksplisit disimpan terpisah dan tidak dihitung sebagai pencipta.",
-    "identity": "Pencipta teridentifikasi dihitung unik berdasarkan NIK berformat 16 digit, bukan kemiripan nama; identitas belum diverifikasi terhadap Dukcapil. Catatan tanpa NIK tetap masuk ukuran tim, tetapi tidak masuk jumlah pencipta teridentifikasi."
+    "geography": "Sebaran contoh karya berdasarkan domisili pencipta fiktif di 12 kecamatan Kota Bekasi.",
+    "teamSize": "Ukuran tim dihitung dari jumlah pencipta fiktif pada setiap contoh karya.",
+    "identity": "Seluruh karya, identitas pencipta, status, dan dokumen dalam dataset ini merupakan data dummy untuk demonstrasi; bukan data pendaftaran resmi."
   },
   "innovations": [
     {
-      "id": "innovation_e00834b1-f68f-459a-a46d-be29a5552d74",
+      "id": "demo-work-01",
       "sourceNumber": "1",
-      "title": "SILSILAH (SISTEM INFORMASI DAN LAPORAN SAMPAH TERPILAH)",
+      "title": "PilahKita — Aplikasi Bank Sampah Warga",
       "creatorIds": [
-        "creator_04f04d29-c75e-4ca4-adb8-2262de115b10"
+        "demo-creator-1-1"
       ],
       "identifiedCreatorIds": [
-        "creator_04f04d29-c75e-4ca4-adb8-2262de115b10"
+        "demo-creator-1-1"
       ],
       "creatorCount": 1,
       "unresolvedCreatorCount": 0,
@@ -24,6 +24,31 @@
       "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
+        "Bantargebang"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-02",
+      "sourceNumber": "2",
+      "title": "Kebun Atap — Panduan Urban Farming",
+      "creatorIds": [
+        "demo-creator-2-1",
+        "demo-creator-2-2"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-2-1",
+        "demo-creator-2-2"
+      ],
+      "creatorCount": 2,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Barat",
         "Bekasi Utara"
       ],
       "geographyBasis": "creator-residence",
@@ -31,27 +56,252 @@
       "reviewFlags": []
     },
     {
-      "id": "innovation_71164742-8cea-4617-9f3d-6bdfa4f72aa7",
-      "sourceNumber": "2",
-      "title": "PLASMAGUARD: Inovasi Plasma Thawer dengan Sistem Basket Terisolasi untuk Menjaga Sterilitas Fresh Frozen Plasma",
+      "id": "demo-work-03",
+      "sourceNumber": "3",
+      "title": "Belajar Bekasi — Media Belajar Interaktif",
       "creatorIds": [
-        "creator_049ed6b4-f917-4840-b21e-5175619bceb0",
-        "creator_06625b83-9e0f-4f6e-aac5-40451f31a758",
-        "creator_9ca1d1c8-1df4-48ed-b295-a9f201afdb2d"
+        "demo-creator-3-1",
+        "demo-creator-3-2",
+        "demo-creator-3-3"
       ],
       "identifiedCreatorIds": [
-        "creator_049ed6b4-f917-4840-b21e-5175619bceb0",
-        "creator_06625b83-9e0f-4f6e-aac5-40451f31a758",
-        "creator_9ca1d1c8-1df4-48ed-b295-a9f201afdb2d"
+        "demo-creator-3-1",
+        "demo-creator-3-2",
+        "demo-creator-3-3"
       ],
       "creatorCount": 3,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 3,
-      "holderRecordCount": 3,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Selatan",
+        "Jatiasih",
+        "Mustikajaya"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-04",
+      "sourceNumber": "4",
+      "title": "Siaga Air — Pemantauan Tinggi Air",
+      "creatorIds": [
+        "demo-creator-4-1",
+        "demo-creator-4-2",
+        "demo-creator-4-3",
+        "demo-creator-4-4"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-4-1",
+        "demo-creator-4-2",
+        "demo-creator-4-3",
+        "demo-creator-4-4"
+      ],
+      "creatorCount": 4,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Timur",
+        "Jatisampurna",
+        "Pondok Gede",
+        "Bantargebang"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-05",
+      "sourceNumber": "5",
+      "title": "Rupa Kota — Buku Ilustrasi Lingkungan",
+      "creatorIds": [
+        "demo-creator-5-1",
+        "demo-creator-5-2",
+        "demo-creator-5-3",
+        "demo-creator-5-4",
+        "demo-creator-5-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-5-1",
+        "demo-creator-5-2",
+        "demo-creator-5-3",
+        "demo-creator-5-4",
+        "demo-creator-5-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
       "districts": [
         "Bekasi Utara",
+        "Medan Satria",
+        "Pondok Melati",
+        "Bekasi Barat"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-06",
+      "sourceNumber": "6",
+      "title": "Tenun Cerita — Motif Tekstil Digital",
+      "creatorIds": [
+        "demo-creator-6-1"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-6-1"
+      ],
+      "creatorCount": 1,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Jatiasih"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-07",
+      "sourceNumber": "7",
+      "title": "Warung Pintar — Pencatatan Usaha Mikro",
+      "creatorIds": [
+        "demo-creator-7-1",
+        "demo-creator-7-2"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-7-1",
+        "demo-creator-7-2"
+      ],
+      "creatorCount": 2,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
         "Jatisampurna",
+        "Pondok Gede"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-08",
+      "sourceNumber": "8",
+      "title": "Jejak Hijau — Peta Kebun Komunitas",
+      "creatorIds": [
+        "demo-creator-8-1",
+        "demo-creator-8-2",
+        "demo-creator-8-3"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-8-1",
+        "demo-creator-8-2",
+        "demo-creator-8-3"
+      ],
+      "creatorCount": 3,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Medan Satria",
+        "Pondok Melati",
+        "Bekasi Barat"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-09",
+      "sourceNumber": "9",
+      "title": "Aksara Ceria — Permainan Literasi Anak",
+      "creatorIds": [
+        "demo-creator-9-1",
+        "demo-creator-9-2",
+        "demo-creator-9-3",
+        "demo-creator-9-4"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-9-1",
+        "demo-creator-9-2",
+        "demo-creator-9-3",
+        "demo-creator-9-4"
+      ],
+      "creatorCount": 4,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Mustikajaya",
+        "Rawalumbu",
+        "Bekasi Selatan",
+        "Jatiasih"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-10",
+      "sourceNumber": "10",
+      "title": "Jelajah Kampung — Panduan Wisata Lokal",
+      "creatorIds": [
+        "demo-creator-10-1",
+        "demo-creator-10-2",
+        "demo-creator-10-3",
+        "demo-creator-10-4",
+        "demo-creator-10-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-10-1",
+        "demo-creator-10-2",
+        "demo-creator-10-3",
+        "demo-creator-10-4",
+        "demo-creator-10-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Pondok Gede",
+        "Bantargebang",
+        "Bekasi Timur",
+        "Jatisampurna"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-11",
+      "sourceNumber": "11",
+      "title": "Panen Bersama — Modul Hidroponik",
+      "creatorIds": [
+        "demo-creator-11-1"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-11-1"
+      ],
+      "creatorCount": 1,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
         "Pondok Melati"
       ],
       "geographyBasis": "creator-residence",
@@ -59,566 +309,700 @@
       "reviewFlags": []
     },
     {
-      "id": "innovation_ad829376-9846-4456-9522-c1e28f3d6a93",
-      "sourceNumber": "3",
-      "title": "SIPALA (Sistim Pengaman Api Listrik Aktif)",
+      "id": "demo-work-12",
+      "sourceNumber": "12",
+      "title": "Ruang Baca — Perpustakaan Digital",
       "creatorIds": [
-        "creator_659ef2f9-6ea3-4bc7-91f9-23b819ac4ed9",
-        "creator_f1f737a7-0af9-46e6-b308-93c919482a7e"
+        "demo-creator-12-1",
+        "demo-creator-12-2"
       ],
       "identifiedCreatorIds": [
-        "creator_659ef2f9-6ea3-4bc7-91f9-23b819ac4ed9",
-        "creator_f1f737a7-0af9-46e6-b308-93c919482a7e"
+        "demo-creator-12-1",
+        "demo-creator-12-2"
       ],
       "creatorCount": 2,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Bekasi Selatan",
-        "Bekasi Utara"
+        "Rawalumbu",
+        "Bekasi Selatan"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_6e41e140-b25f-4b60-89a2-f9f9288a2afc",
-      "sourceNumber": "4",
-      "title": "SADEWA (Sistem Alat Emisi & Warta Atmosfer)",
+      "id": "demo-work-13",
+      "sourceNumber": "13",
+      "title": "Dapur Hemat — Buku Resep Keluarga",
       "creatorIds": [
-        "creator_d8439023-c15d-497b-940b-37dc6e020ff6",
-        "creator_2ae3ee76-4964-43d4-930a-b404838f80f7",
-        "creator_b6cda9b1-007b-429d-90b9-1880273a624b",
-        "creator_fb8612d2-ff1a-40ba-b762-4f6e7cd66546",
-        "creator_df167bb3-7e80-4b74-98c8-53935a9ecf2b"
+        "demo-creator-13-1",
+        "demo-creator-13-2",
+        "demo-creator-13-3"
       ],
       "identifiedCreatorIds": [
-        "creator_d8439023-c15d-497b-940b-37dc6e020ff6",
-        "creator_2ae3ee76-4964-43d4-930a-b404838f80f7",
-        "creator_b6cda9b1-007b-429d-90b9-1880273a624b",
-        "creator_fb8612d2-ff1a-40ba-b762-4f6e7cd66546",
-        "creator_df167bb3-7e80-4b74-98c8-53935a9ecf2b"
-      ],
-      "creatorCount": 5,
-      "unresolvedCreatorCount": 0,
-      "supervisorCount": 1,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Timur"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "invalid_contact",
-        "supervisor_role",
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_5d0e8ef1-b070-4017-bbd1-40e7598229c5",
-      "sourceNumber": "5",
-      "title": "Mo-RIS (Mobile Road Inspection System)",
-      "creatorIds": [
-        "creator_54d03eb9-ed35-48dd-b1b4-aa307b0eee33",
-        "creator_beaada5b-ebf1-4a2e-ae6c-e15ebaaad41c",
-        "creator_aa70ca4f-2f43-4885-999c-f1b50f25f82f",
-        "creator_17251311-bda0-4a2d-b16f-603f14507412"
-      ],
-      "identifiedCreatorIds": [
-        "creator_54d03eb9-ed35-48dd-b1b4-aa307b0eee33",
-        "creator_beaada5b-ebf1-4a2e-ae6c-e15ebaaad41c",
-        "creator_aa70ca4f-2f43-4885-999c-f1b50f25f82f",
-        "creator_17251311-bda0-4a2d-b16f-603f14507412"
-      ],
-      "creatorCount": 4,
-      "unresolvedCreatorCount": 0,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Timur"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "invalid_contact",
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_0e4473e2-3ddf-482c-92d5-4277653f783a",
-      "sourceNumber": "6",
-      "title": "(SiLaporFasum) Sistem Informasi Laporan Kerusakan Fasilitas Umum Kota Bekasi Berbasis Android",
-      "creatorIds": [
-        "creator_82069d18-e8e2-4fba-b709-37104b6da162",
-        "creator_851df13c-62dd-4fc6-8f86-b57d9aac8667",
-        "creator_1ef43f94-f1fa-4582-ba86-5a498797ec6e"
-      ],
-      "identifiedCreatorIds": [
-        "creator_82069d18-e8e2-4fba-b709-37104b6da162",
-        "creator_851df13c-62dd-4fc6-8f86-b57d9aac8667",
-        "creator_1ef43f94-f1fa-4582-ba86-5a498797ec6e"
+        "demo-creator-13-1",
+        "demo-creator-13-2",
+        "demo-creator-13-3"
       ],
       "creatorCount": 3,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
+        "Bantargebang",
+        "Bekasi Timur",
+        "Jatisampurna"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-14",
+      "sourceNumber": "14",
+      "title": "Teman Lansia — Aplikasi Pendamping",
+      "creatorIds": [
+        "demo-creator-14-1",
+        "demo-creator-14-2",
+        "demo-creator-14-3",
+        "demo-creator-14-4"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-14-1",
+        "demo-creator-14-2",
+        "demo-creator-14-3",
+        "demo-creator-14-4"
+      ],
+      "creatorCount": 4,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Barat",
+        "Bekasi Utara",
+        "Medan Satria",
+        "Pondok Melati"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-15",
+      "sourceNumber": "15",
+      "title": "Kreasi Kertas — Modul Daur Ulang",
+      "creatorIds": [
+        "demo-creator-15-1",
+        "demo-creator-15-2",
+        "demo-creator-15-3",
+        "demo-creator-15-4",
+        "demo-creator-15-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-15-1",
+        "demo-creator-15-2",
+        "demo-creator-15-3",
+        "demo-creator-15-4",
+        "demo-creator-15-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Selatan",
+        "Jatiasih",
+        "Mustikajaya",
         "Rawalumbu"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_cfabd5b7-0bca-41d5-9edb-d6afc15c9799",
-      "sourceNumber": "7",
-      "title": "Tongkat Cerdas Tunanetra Berbasis IOT Untuk Membantu Mobilitas dan Keamanan Penyandang Tunanetra",
+      "id": "demo-work-16",
+      "sourceNumber": "16",
+      "title": "Lentera Kelas — Animasi Pendidikan",
       "creatorIds": [
-        "creator_c6cc0c6b-8647-49fb-a8fc-ff07a296dc6e"
+        "demo-creator-16-1"
       ],
       "identifiedCreatorIds": [
-        "creator_c6cc0c6b-8647-49fb-a8fc-ff07a296dc6e"
+        "demo-creator-16-1"
       ],
       "creatorCount": 1,
       "unresolvedCreatorCount": 0,
-      "supervisorCount": 1,
-      "holderCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Timur"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-17",
+      "sourceNumber": "17",
+      "title": "Kota Ramah — Buku Desain Ruang Publik",
+      "creatorIds": [
+        "demo-creator-17-1",
+        "demo-creator-17-2"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-17-1",
+        "demo-creator-17-2"
+      ],
+      "creatorCount": 2,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Utara",
+        "Medan Satria"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-18",
+      "sourceNumber": "18",
+      "title": "Pasar Dekat — Katalog Produk Warga",
+      "creatorIds": [
+        "demo-creator-18-1",
+        "demo-creator-18-2",
+        "demo-creator-18-3"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-18-1",
+        "demo-creator-18-2",
+        "demo-creator-18-3"
+      ],
+      "creatorCount": 3,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Jatiasih",
+        "Mustikajaya",
+        "Rawalumbu"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-19",
+      "sourceNumber": "19",
+      "title": "Langkah Aman — Komik Keselamatan Jalan",
+      "creatorIds": [
+        "demo-creator-19-1",
+        "demo-creator-19-2",
+        "demo-creator-19-3",
+        "demo-creator-19-4"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-19-1",
+        "demo-creator-19-2",
+        "demo-creator-19-3",
+        "demo-creator-19-4"
+      ],
+      "creatorCount": 4,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Jatisampurna",
+        "Pondok Gede",
+        "Bantargebang",
+        "Bekasi Timur"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-20",
+      "sourceNumber": "20",
+      "title": "Saku Usaha — Panduan UMKM",
+      "creatorIds": [
+        "demo-creator-20-1",
+        "demo-creator-20-2",
+        "demo-creator-20-3",
+        "demo-creator-20-4",
+        "demo-creator-20-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-20-1",
+        "demo-creator-20-2",
+        "demo-creator-20-3",
+        "demo-creator-20-4",
+        "demo-creator-20-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Medan Satria",
+        "Pondok Melati",
+        "Bekasi Barat",
+        "Bekasi Utara"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-21",
+      "sourceNumber": "21",
+      "title": "Air untuk Semua — Video Edukasi",
+      "creatorIds": [
+        "demo-creator-21-1"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-21-1"
+      ],
+      "creatorCount": 1,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
         "Mustikajaya"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "supervisor_role",
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_04a9d3c4-fda9-4380-8c52-70915170b67e",
-      "sourceNumber": "8",
-      "title": "SI-KIA PINTAR: Sinergi Aplikasi Web dan Kartu Pintar RFID untuk KIA Posyandu",
+      "id": "demo-work-22",
+      "sourceNumber": "22",
+      "title": "Berkebun Ceria — Permainan Edukasi",
       "creatorIds": [
-        "creator_8e15b1f6-ca28-420b-8277-f392b1a39e81",
-        "creator_b45fd321-2624-48d1-ab24-f27b9b2a2c73",
-        "creator_87ed3c4e-c8eb-45af-940d-eb5fce1018f6",
-        "creator_5e4e97ec-4442-42b3-b554-3b7a39544c08",
-        "creator_ff9dbb8b-d038-4ffc-bc62-571165625ba0"
+        "demo-creator-22-1",
+        "demo-creator-22-2"
       ],
       "identifiedCreatorIds": [
-        "creator_8e15b1f6-ca28-420b-8277-f392b1a39e81",
-        "creator_b45fd321-2624-48d1-ab24-f27b9b2a2c73",
-        "creator_87ed3c4e-c8eb-45af-940d-eb5fce1018f6",
-        "creator_5e4e97ec-4442-42b3-b554-3b7a39544c08",
-        "creator_ff9dbb8b-d038-4ffc-bc62-571165625ba0"
+        "demo-creator-22-1",
+        "demo-creator-22-2"
       ],
-      "creatorCount": 5,
+      "creatorCount": 2,
       "unresolvedCreatorCount": 0,
-      "supervisorCount": 1,
-      "holderCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Bekasi Timur",
-        "Bantargebang",
-        "Rawalumbu"
+        "Pondok Gede",
+        "Bantargebang"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "geography_correction",
-        "supervisor_role",
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_5cc8ee36-b65d-46d4-a2ea-3270ab2c1d80",
-      "sourceNumber": "9",
-      "title": "Mesin Pencacah Plastik Rumahan",
+      "id": "demo-work-23",
+      "sourceNumber": "23",
+      "title": "Cerita Sungai — Buku Cerita Bergambar",
       "creatorIds": [
-        "creator_b2b1c9c7-5297-4623-a768-c56ba9963d76",
-        "creator_5fce4a26-1054-4eb5-a647-ad2e28bf3086",
-        "creator_e8acf4e9-f277-4c54-8065-6f5c0c98477f"
+        "demo-creator-23-1",
+        "demo-creator-23-2",
+        "demo-creator-23-3"
       ],
       "identifiedCreatorIds": [
-        "creator_b2b1c9c7-5297-4623-a768-c56ba9963d76",
-        "creator_5fce4a26-1054-4eb5-a647-ad2e28bf3086",
-        "creator_e8acf4e9-f277-4c54-8065-6f5c0c98477f"
+        "demo-creator-23-1",
+        "demo-creator-23-2",
+        "demo-creator-23-3"
       ],
       "creatorCount": 3,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
+        "Pondok Melati",
+        "Bekasi Barat",
         "Bekasi Utara"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_d612b354-c593-4cb1-ac74-e05991db80d5",
-      "sourceNumber": "10",
-      "title": "PELOR (Pelet sampah Organik)",
+      "id": "demo-work-24",
+      "sourceNumber": "24",
+      "title": "Batik Rintik — Motif Kontemporer",
       "creatorIds": [
-        "creator_8180d30f-7cc5-4a8a-bdef-ea264b861193",
-        "creator_e0d46b02-9312-47fa-8138-3fdfa52252cf",
-        "creator_2aa23b95-cb81-4fe2-bf84-2f4754bf793b"
+        "demo-creator-24-1",
+        "demo-creator-24-2",
+        "demo-creator-24-3",
+        "demo-creator-24-4"
       ],
       "identifiedCreatorIds": [
-        "creator_8180d30f-7cc5-4a8a-bdef-ea264b861193",
-        "creator_e0d46b02-9312-47fa-8138-3fdfa52252cf",
-        "creator_2aa23b95-cb81-4fe2-bf84-2f4754bf793b"
+        "demo-creator-24-1",
+        "demo-creator-24-2",
+        "demo-creator-24-3",
+        "demo-creator-24-4"
       ],
-      "creatorCount": 3,
+      "creatorCount": 4,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
+        "Rawalumbu",
+        "Bekasi Selatan",
+        "Jatiasih",
+        "Mustikajaya"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-25",
+      "sourceNumber": "25",
+      "title": "Panggung Warga — Rekaman Pertunjukan Teater",
+      "creatorIds": [
+        "demo-creator-25-1",
+        "demo-creator-25-2",
+        "demo-creator-25-3",
+        "demo-creator-25-4",
+        "demo-creator-25-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-25-1",
+        "demo-creator-25-2",
+        "demo-creator-25-3",
+        "demo-creator-25-4",
+        "demo-creator-25-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bantargebang",
+        "Bekasi Timur",
+        "Jatisampurna",
+        "Pondok Gede"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-26",
+      "sourceNumber": "26",
+      "title": "Suara Kota — Produksi Rekaman Podcast",
+      "creatorIds": [
+        "demo-creator-26-1"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-26-1"
+      ],
+      "creatorCount": 1,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Barat"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-27",
+      "sourceNumber": "27",
+      "title": "Cerita Pagi — Program Siaran Komunitas",
+      "creatorIds": [
+        "demo-creator-27-1",
+        "demo-creator-27-2"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-27-1",
+        "demo-creator-27-2"
+      ],
+      "creatorCount": 2,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Bekasi Selatan",
         "Jatiasih"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_f155bb39-b11f-420e-b888-23063eb8dea9",
-      "sourceNumber": "11",
-      "title": "RUKUNARA – Aplikasi Administrasi dan Pelayanan RW Digital",
+      "id": "demo-work-28",
+      "sourceNumber": "28",
+      "title": "Gerak Bersama — Rekaman Pertunjukan Tari",
       "creatorIds": [
-        "creator_8a2b9a7c-56f4-4292-a999-1cb541fb382a",
-        "creator_136009f7-a794-4da0-80c8-eaf79aa2b930",
-        "creator_2cab7956-54da-44e3-aa65-9ae48896744d"
+        "demo-creator-28-1",
+        "demo-creator-28-2",
+        "demo-creator-28-3"
       ],
       "identifiedCreatorIds": [
-        "creator_8a2b9a7c-56f4-4292-a999-1cb541fb382a",
-        "creator_136009f7-a794-4da0-80c8-eaf79aa2b930",
-        "creator_2cab7956-54da-44e3-aa65-9ae48896744d"
+        "demo-creator-28-1",
+        "demo-creator-28-2",
+        "demo-creator-28-3"
       ],
       "creatorCount": 3,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Bekasi Utara",
-        "Mustikajaya"
+        "Bekasi Timur",
+        "Jatisampurna",
+        "Pondok Gede"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_fe248d2f-0d6a-4c99-bce7-2723a08f1b72",
-      "sourceNumber": "12",
-      "title": "SIKOPER MERAH Sistem Informasi Terintegrasi Koperasi Merah Putih dalam mempersiapkan Stok Bahan Baku SPPG di Kota Bekasi",
+      "id": "demo-work-29",
+      "sourceNumber": "29",
+      "title": "Ruang Ekspresi — Dokumentasi Seni Pertunjukan",
       "creatorIds": [
-        "creator_2a9ed4a4-1926-48ea-9cee-b60c321bf655",
-        "creator_6e2a5fa8-5b18-4cef-85ed-65712c9b33eb",
-        "creator_2bbb98c6-6176-4082-9adf-c027d12b20ba"
+        "demo-creator-29-1",
+        "demo-creator-29-2",
+        "demo-creator-29-3",
+        "demo-creator-29-4"
       ],
       "identifiedCreatorIds": [
-        "creator_2a9ed4a4-1926-48ea-9cee-b60c321bf655",
-        "creator_6e2a5fa8-5b18-4cef-85ed-65712c9b33eb",
-        "creator_2bbb98c6-6176-4082-9adf-c027d12b20ba"
+        "demo-creator-29-1",
+        "demo-creator-29-2",
+        "demo-creator-29-3",
+        "demo-creator-29-4"
       ],
-      "creatorCount": 3,
+      "creatorCount": 4,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
         "Bekasi Utara",
+        "Medan Satria",
+        "Pondok Melati",
+        "Bekasi Barat"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-30",
+      "sourceNumber": "30",
+      "title": "Dialog Kampung — Produksi Rekaman Diskusi",
+      "creatorIds": [
+        "demo-creator-30-1",
+        "demo-creator-30-2",
+        "demo-creator-30-3",
+        "demo-creator-30-4",
+        "demo-creator-30-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-30-1",
+        "demo-creator-30-2",
+        "demo-creator-30-3",
+        "demo-creator-30-4",
+        "demo-creator-30-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
         "Jatiasih",
-        "Mustikajaya"
+        "Mustikajaya",
+        "Rawalumbu",
+        "Bekasi Selatan"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_1320ff39-38ae-48a5-964f-511e6ee660c0",
-      "sourceNumber": "13",
-      "title": "SMILE (Smart Interactive Learning) with Gesture Recognition",
+      "id": "demo-work-31",
+      "sourceNumber": "31",
+      "title": "Pentas Ceria — Rekaman Teater Anak",
       "creatorIds": [
-        "creator_16c7743e-967e-48b1-99b7-4df7859505db",
-        "creator_6c8a6a85-45c4-41da-98c3-84973bd94a72",
-        "creator_3f4c2106-2487-46a7-886c-6fbce1b9e41e"
+        "demo-creator-31-1"
       ],
       "identifiedCreatorIds": [
-        "creator_16c7743e-967e-48b1-99b7-4df7859505db",
-        "creator_6c8a6a85-45c4-41da-98c3-84973bd94a72",
-        "creator_3f4c2106-2487-46a7-886c-6fbce1b9e41e"
-      ],
-      "creatorCount": 3,
-      "unresolvedCreatorCount": 0,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Utara",
-        "Jatiasih",
-        "Mustikajaya"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_bd0cf306-c215-425f-b4bc-8948a9bc2cc5",
-      "sourceNumber": "14",
-      "title": "Teknologi Tepat Guna Pengelolaan Bank Sampah Berbasis Digital dan Internet of Things (IoT) untuk Mendukung Ekonomi Sirkular dan Smart City di Kota Bekasi",
-      "creatorIds": [
-        "creator_447c499c-02f6-48ad-9ef4-15151df1a1d1",
-        "creator_19f72230-e856-4399-942c-b84fbcfaafd7",
-        "creator_3e5a16e1-034b-435b-9f7e-b0e8c15545ee"
-      ],
-      "identifiedCreatorIds": [
-        "creator_447c499c-02f6-48ad-9ef4-15151df1a1d1",
-        "creator_19f72230-e856-4399-942c-b84fbcfaafd7",
-        "creator_3e5a16e1-034b-435b-9f7e-b0e8c15545ee"
-      ],
-      "creatorCount": 3,
-      "unresolvedCreatorCount": 0,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Barat",
-        "Rawalumbu"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_a43f1fb9-eecd-44b0-b45d-ea87831f51e0",
-      "sourceNumber": "15",
-      "title": "Silat Smart Trainer Teknologi Tepat Guna Untuk Untuk Akselerasi Prestasi Atlet Pencak Silat Kota Bekasi",
-      "creatorIds": [
-        "creator_480b1745-4bb9-4e94-990f-a223a8c6744b",
-        "creator_54fc1130-0bac-4d1e-91a1-53229ed9fad6",
-        "creator_77f27620-2b96-4402-955f-7683e68cf997"
-      ],
-      "identifiedCreatorIds": [
-        "creator_480b1745-4bb9-4e94-990f-a223a8c6744b",
-        "creator_54fc1130-0bac-4d1e-91a1-53229ed9fad6",
-        "creator_77f27620-2b96-4402-955f-7683e68cf997"
-      ],
-      "creatorCount": 3,
-      "unresolvedCreatorCount": 0,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Barat",
-        "Rawalumbu"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "outside_city",
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_f24d0ddf-0904-4410-ad6f-46309fa50c20",
-      "sourceNumber": "16",
-      "title": "SI-BARA Sistem Bank Sampah BASKARA : Implementasi Mobile Based Aplication Terintegrasi Real Time Notification",
-      "creatorIds": [
-        "creator_d6bbd9e7-e5c7-4b26-8b43-248514d13645"
-      ],
-      "identifiedCreatorIds": [
-        "creator_d6bbd9e7-e5c7-4b26-8b43-248514d13645"
+        "demo-creator-31-1"
       ],
       "creatorCount": 1,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Bekasi Utara"
+        "Jatisampurna"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_1011230c-1153-4cd0-94f4-3432bebbecd0",
-      "sourceNumber": "17",
-      "title": "Mesin Tes Daya Tahan Oli",
+      "id": "demo-work-32",
+      "sourceNumber": "32",
+      "title": "Kabar Lingkungan — Program Siaran Edukasi",
       "creatorIds": [
-        "creator_e6ef1172-f5fc-49e6-b096-66ef784e3c45",
-        "creator_b5dcdce6-acb2-4c77-91b4-3f547562e553",
-        "creator_6b78dabb-6c99-4dbc-802d-0110ed76542d",
-        "creator_56fe9fc6-ecc4-4381-b428-5f8634337eb3"
+        "demo-creator-32-1",
+        "demo-creator-32-2"
       ],
       "identifiedCreatorIds": [
-        "creator_e6ef1172-f5fc-49e6-b096-66ef784e3c45",
-        "creator_b5dcdce6-acb2-4c77-91b4-3f547562e553",
-        "creator_56fe9fc6-ecc4-4381-b428-5f8634337eb3"
-      ],
-      "creatorCount": 4,
-      "unresolvedCreatorCount": 1,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [
-        "Bekasi Utara"
-      ],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "mapped",
-      "reviewFlags": [
-        "missing_identity",
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_f792b6f3-b543-4385-b686-85ed9c482c5a",
-      "sourceNumber": "18",
-      "title": "SEPTiQ-BEKASI : Sistem Inspeksi Cerdas Tangki Septic On-Demand dengan Reader Komunal",
-      "creatorIds": [
-        "creator_3badacb8-5d52-4496-a64b-b5213192172a",
-        "creator_b7637479-4e1e-43b6-bb86-98102bdd2dfe"
-      ],
-      "identifiedCreatorIds": [
-        "creator_3badacb8-5d52-4496-a64b-b5213192172a",
-        "creator_b7637479-4e1e-43b6-bb86-98102bdd2dfe"
+        "demo-creator-32-1",
+        "demo-creator-32-2"
       ],
       "creatorCount": 2,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Mustikajaya",
-        "Pondok Gede"
+        "Medan Satria",
+        "Pondok Melati"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "geography_correction",
-        "holder_identity_review",
-        "title_variant"
-      ]
+      "reviewFlags": []
     },
     {
-      "id": "innovation_1df203e3-70b7-4942-82ae-134a036ede11",
-      "sourceNumber": "19",
-      "title": "Dashboard Digital Bank Jelantah JELITA (Jelantah Bernilai, Lingkungan Terjaga)",
+      "id": "demo-work-33",
+      "sourceNumber": "33",
+      "title": "Cerita Senja — Produksi Rekaman Cerita",
       "creatorIds": [
-        "creator_1de9b4c0-5378-4bb1-9ebf-012d6b716f9e"
-      ],
-      "identifiedCreatorIds": [],
-      "creatorCount": 1,
-      "unresolvedCreatorCount": 1,
-      "supervisorCount": 0,
-      "holderCount": 0,
-      "holderRecordCount": 1,
-      "districts": [],
-      "geographyBasis": "creator-residence",
-      "mappingStatus": "unmapped",
-      "reviewFlags": [
-        "missing_identity",
-        "missing_geography",
-        "holder_identity_review"
-      ]
-    },
-    {
-      "id": "innovation_1fdafc48-0ebe-4d98-9bfe-ded0c7f6564a",
-      "sourceNumber": "20",
-      "title": "KALIGUARD",
-      "creatorIds": [
-        "creator_3badacb8-5d52-4496-a64b-b5213192172a"
+        "demo-creator-33-1",
+        "demo-creator-33-2",
+        "demo-creator-33-3"
       ],
       "identifiedCreatorIds": [
-        "creator_3badacb8-5d52-4496-a64b-b5213192172a"
+        "demo-creator-33-1",
+        "demo-creator-33-2",
+        "demo-creator-33-3"
+      ],
+      "creatorCount": 3,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Mustikajaya",
+        "Rawalumbu",
+        "Bekasi Selatan"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-34",
+      "sourceNumber": "34",
+      "title": "Panggung Pelajar — Rekaman Pertunjukan",
+      "creatorIds": [
+        "demo-creator-34-1",
+        "demo-creator-34-2",
+        "demo-creator-34-3",
+        "demo-creator-34-4"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-34-1",
+        "demo-creator-34-2",
+        "demo-creator-34-3",
+        "demo-creator-34-4"
+      ],
+      "creatorCount": 4,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Pondok Gede",
+        "Bantargebang",
+        "Bekasi Timur",
+        "Jatisampurna"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-35",
+      "sourceNumber": "35",
+      "title": "Sapa Warga — Program Siaran Komunitas",
+      "creatorIds": [
+        "demo-creator-35-1",
+        "demo-creator-35-2",
+        "demo-creator-35-3",
+        "demo-creator-35-4",
+        "demo-creator-35-5"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-35-1",
+        "demo-creator-35-2",
+        "demo-creator-35-3",
+        "demo-creator-35-4",
+        "demo-creator-35-5"
+      ],
+      "creatorCount": 5,
+      "unresolvedCreatorCount": 0,
+      "supervisorCount": 0,
+      "holderCount": 1,
+      "holderRecordCount": 1,
+      "districts": [
+        "Pondok Melati",
+        "Bekasi Barat",
+        "Bekasi Utara",
+        "Medan Satria"
+      ],
+      "geographyBasis": "creator-residence",
+      "mappingStatus": "mapped",
+      "reviewFlags": []
+    },
+    {
+      "id": "demo-work-36",
+      "sourceNumber": "36",
+      "title": "Kisah Nusantara — Rekaman Pembacaan Cerita",
+      "creatorIds": [
+        "demo-creator-36-1"
+      ],
+      "identifiedCreatorIds": [
+        "demo-creator-36-1"
       ],
       "creatorCount": 1,
       "unresolvedCreatorCount": 0,
       "supervisorCount": 0,
-      "holderCount": 0,
+      "holderCount": 1,
       "holderRecordCount": 1,
       "districts": [
-        "Pondok Gede"
+        "Rawalumbu"
       ],
       "geographyBasis": "creator-residence",
       "mappingStatus": "mapped",
-      "reviewFlags": [
-        "geography_correction",
-        "holder_identity_review"
-      ]
+      "reviewFlags": []
     }
   ],
-  "reviewSummary": [
-    {
-      "code": "outside_city",
-      "count": 12,
-      "label": "Domisili di luar master kecamatan Kota Bekasi"
-    },
-    {
-      "code": "invalid_contact",
-      "count": 3,
-      "label": "Kontak sumber perlu diperiksa"
-    },
-    {
-      "code": "supervisor_role",
-      "count": 3,
-      "label": "Peran pendamping dan pembimbing dipertahankan terpisah"
-    },
-    {
-      "code": "geography_correction",
-      "count": 3,
-      "label": "Ejaan kecamatan dinormalisasi dengan catatan sumber"
-    },
-    {
-      "code": "missing_identity",
-      "count": 2,
-      "label": "Catatan pencipta tanpa identitas yang dapat dipastikan"
-    },
-    {
-      "code": "missing_geography",
-      "count": 1,
-      "label": "Domisili kecamatan belum tersedia"
-    },
-    {
-      "code": "holder_identity_review",
-      "count": 18,
-      "label": "Catatan pemegang tanpa identitas atau berisi gabungan nama"
-    },
-    {
-      "code": "title_variant",
-      "count": 1,
-      "label": "Perbedaan judul antarbagian"
-    }
-  ]
+  "reviewSummary": []
 }
