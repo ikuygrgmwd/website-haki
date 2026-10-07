@@ -11,7 +11,7 @@ export type Care = { id: string; innovation_id: string; innovation: Work; data: 
 export const state: { user: User | null; csrf: string; setup: boolean; regions: Region[] } = { user: null, csrf: '', setup: false, regions: [] };
 export async function api<T = unknown>(path: string, method = 'GET', body?: unknown): Promise<T> {
   const response = await fetch(`/api${path}`, { method, credentials: 'same-origin', headers: { ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}), ...(method !== 'GET' ? { 'X-CSRF-Token': state.csrf } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) });
-  const result = await response.json().catch(() => ({ error: 'Server belum tersedia. Jalankan npm run dev.' }));
+  const result = await response.json().catch(() => ({ error: 'Layanan belum tersedia. Silakan coba kembali beberapa saat lagi.' }));
   if (!response.ok) throw new Error(result.error || 'Permintaan gagal.');
   return result as T;
 }

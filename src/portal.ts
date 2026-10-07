@@ -70,6 +70,6 @@ export async function render() {
   }
 }
 export async function start() {
-  try { await refreshSession(); await render(); } catch (e) { app.innerHTML = `<div class="startup-error">${heading('Server belum tersedia', (e as Error).message)}<p>Jalankan npm run dev untuk memulai aplikasi dan server.</p>${button('Coba Lagi', 'id="retry-start"')}</div>`; document.querySelector('#retry-start')?.addEventListener('click', () => void start()); }
+  try { await refreshSession(); await render(); } catch (e) { app.innerHTML = `<div class="startup-error">${heading('Server belum tersedia', (e as Error).message)}<p>Silakan coba kembali beberapa saat lagi atau hubungi pengelola aplikasi.</p>${button('Coba Lagi', 'id="retry-start"')}</div>`; document.querySelector('#retry-start')?.addEventListener('click', () => void start()); }
 }
 window.addEventListener('hashchange', () => void render());
