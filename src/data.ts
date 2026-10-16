@@ -62,7 +62,8 @@ export function validateDataset(value: unknown): PublicDataset {
 }
 
 export async function loadDataset(): Promise<PublicDataset> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/innovations.json`, { cache: 'no-cache', signal: AbortSignal.timeout(20000) });
+  const response = await fetch('/api/dashboard', { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(20000) });
+  if (response.status === 401) { location.replace('#/login'); throw new Error('Sesi berakhir. Silakan masuk kembali.'); }
   if (!response.ok) throw new Error(`Feeder tidak dapat dimuat (${response.status}).`);
   return validateDataset(await response.json());
 }

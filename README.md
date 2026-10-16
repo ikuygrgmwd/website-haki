@@ -73,6 +73,12 @@ npm start
 
 Perintah start menyajikan dist beserta API pada port 3001. Preview Vite hanya menyajikan frontend. Hosting mode SQLite memerlukan volume persisten dan HTTPS. Pada Vercel, `api/index.mjs` menjalankan API dengan PostgreSQL dan Storage; frontend disajikan dari `dist`. Konfigurasi yang belum lengkap menghasilkan error, tanpa fallback ke SQLite di Vercel. Deployment cloud memerlukan pengujian koneksi nyata setelah environment disiapkan.
 
+## Halaman login dan berita
+
+Alamat awal `/` diarahkan ke `#/login`; tautan lama `#/beranda` juga menuju halaman login. Dashboard (`#/dashboard`) dan API datanya hanya dapat diakses setelah login. Login berhasil membuka dashboard; logout atau sesi berakhir mengembalikan pengguna ke halaman login.
+
+Admin mengelola berita melalui **Landing Page → Berita Login** (`#/landing/berita`): tambah/edit/hapus, judul, deskripsi, gambar opsional (PNG/JPG/WebP, maksimal 2 MB), tautan, urutan, dan tampil/sembunyikan. Berita menjadi panel utama di sebelah kiri, dengan formulir login ringkas di kanan. Tombol kiri/kanan, indikator pilihan, tombol panah keyboard, dan geser sentuh mengganti konten tanpa menghapus isian login. Carousel dan Tentang HAKI mengikuti berita dalam panel yang sama; tidak ada daftar berita di bawah. Pada layar ponsel panel berita berada di atas formulir. Tiga berita bertanda **BERITA DUMMY** tersedia ketika daftar berita belum pernah disimpan; setelah Admin menyimpan atau menghapus semuanya, pilihannya tetap tersimpan dan contoh tidak dimunculkan kembali. User biasa dan pengunjung tidak dapat mengelola konten.
+
 ## Fitur dan hak akses
 
 - Admin: semua ciptaan, pemilik, edit/status/sertifikat, pengguna, master wilayah, landing page, dan pembinaan.
@@ -90,7 +96,7 @@ Perintah start menyajikan dist beserta API pada port 3001. Preview Vite hanya me
 
 ## Dashboard dan feeder
 
-Dashboard publik memakai snapshot public/data/innovations.json yang berisi proyeksi contoh karya tanpa identitas/kontak privat. Saat seeding, judul, jumlah pencipta, dan domisili cocok dengan record SQLite. Edit/pengajuan privat sesudahnya tidak otomatis dipublikasikan; dashboard bukan daftar transaksi langsung.
+Dashboard setelah login memakai snapshot `server/data/innovations.json` melalui API `/api/dashboard` yang memeriksa sesi. Snapshot ini tidak disertakan dalam aset publik. Snapshot berisi proyeksi contoh karya tanpa identitas/kontak privat. Saat seeding, judul, jumlah pencipta, dan domisili cocok dengan record SQLite. Edit/pengajuan privat sesudahnya tidak otomatis dipublikasikan; dashboard bukan daftar transaksi langsung.
 
 Pencarian menyaring semua bagian dashboard. Pilihan kecamatan menyaring kartu ringkasan, ukuran tim, dan daftar karya; peta serta grafik wilayah tetap menghitung seluruh kecamatan sesuai pencarian agar angka dan warna daerah lain tidak berubah saat satu daerah dipilih. Satu karya dapat muncul di beberapa kecamatan berdasarkan domisili pencipta, tetapi total keseluruhan dihitung dari ID karya unik. Pembimbing tidak dihitung sebagai pencipta.
 
@@ -100,7 +106,7 @@ Impor feeder asli masih tersedia bila diperlukan nanti:
 npm run import:feeder -- "PATH/data.tsv"
 ~~~
 
-Impor memperbarui snapshot dashboard dan arsip privat; tidak menimpa transaksi SQLite yang sudah dikelola. Jangan menjalankannya jika ingin mempertahankan dataset demo publik. Jangan taruh feeder mentah dalam public atau src.
+Impor memperbarui snapshot dashboard dan arsip privat; tidak menimpa transaksi SQLite yang sudah dikelola. Jangan menjalankannya jika ingin mempertahankan dataset demo dashboard. Jangan taruh feeder mentah dalam public atau src.
 
 Peta menggunakan MapLibre dan geometri lokal 12 kecamatan dari sumber BIG; dokumentasi sumber dan lisensi berada di docs/boundaries.md. Tile peta memerlukan internet, sedangkan geometri/statistik tersedia lokal.
 

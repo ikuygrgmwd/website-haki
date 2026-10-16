@@ -116,7 +116,7 @@ test('choropleth has contiguous numerical ranges and progressively darker colors
 });
 
 test('delivered demo has consistent counts and every district filter matches summary/list', () => {
-  const data = validateDataset(JSON.parse(readFileSync(new URL('../public/data/innovations.json', import.meta.url))));
+  const data = validateDataset(JSON.parse(readFileSync(new URL('../server/data/innovations.json', import.meta.url))));
   const s = summarize(data.innovations);
   assert.equal(data.sourceId, 'sapatri-demo');
   assert.deepEqual([s.totalInnovations,s.uniqueCreators,s.creatorRelationships,s.unresolvedCreators,s.representedDistricts,s.mappedInnovations,s.unmappedInnovations,s.supervisorRelationships], [36,106,106,0,12,36,0,0]);

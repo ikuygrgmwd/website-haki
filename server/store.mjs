@@ -40,7 +40,7 @@ export function openStore(path, seed = true) {
   `);
   if (!db.prepare('PRAGMA table_info(files)').all().some(column => column.name === 'storage_path')) db.exec('ALTER TABLE files ADD COLUMN storage_path TEXT');
   if (seed) {
-    const source = resolve('public/data/innovations.json');
+    const source = resolve('server/data/innovations.json');
     if (existsSync(source) && !db.prepare("SELECT key FROM content WHERE key='_feeder_seed_v1'").get()) {
       db.exec('BEGIN');
       try {

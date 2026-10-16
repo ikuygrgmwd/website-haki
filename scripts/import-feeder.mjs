@@ -11,7 +11,7 @@ if (!input) { console.error('Usage: npm run import:feeder -- <path.tsv> [--sourc
 const sourceId = value('--source') ?? 'bekasi-hak-cipta';
 const privateDir = resolve(root, 'private-data');
 const databasePath = resolve(privateDir, 'feeder-db.json');
-const publicPath = resolve(root, 'public/data/innovations.json');
+const publicPath = resolve(root, 'server/data/innovations.json');
 for (const target of [privateDir, publicPath]) {
   const subpath = relative(root, target); if (subpath.startsWith('..') || isAbsolute(subpath)) throw new Error('Output di luar direktori proyek.');
 }

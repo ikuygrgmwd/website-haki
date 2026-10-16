@@ -77,6 +77,16 @@ test('PostgreSQL API: custom login, concurrent edits, private 8 MB storage and r
     await admin.ok('/users', 'POST', { name, email: `${name}@example.test`, password, role: 'User', active: true });
     await c.ok('/login', 'POST', { email: `${name}@example.test`, password });
   }
+  assert.equal((await client().req('/dashboard')).status, 401);
+  assert.equal((await owner.req('/dashboard')).status, 200);
+  const news = (await client().ok('/landing')).news;
+  assert.equal(news.length, 3);
+  assert.equal((await owner.req('/content/news', 'PUT', { slides: news })).status, 403);
+  await admin.ok('/content/news', 'PUT', { slides: [{ ...news[0], title: 'Berita PostgreSQL' }] });
+  assert.equal((await client().ok('/landing')).news[0].title, 'Berita PostgreSQL');
+  assert.equal(JSON.parse((await database.one("SELECT data FROM content WHERE key='news'")).data)[0].title, 'Berita PostgreSQL');
+  await admin.ok('/content/news', 'PUT', { slides: [] });
+  assert.deepEqual((await client().ok('/landing')).news, []);
   let work = await owner.ok('/innovations', 'POST', {});
   const edit = { title: 'Judul', version: work.version, data: { creators: [], holders: [], attachments: [] } };
   const edits = await Promise.all([owner.req(`/innovations/${work.id}`, 'PUT', edit), owner.req(`/innovations/${work.id}`, 'PUT', edit)]);

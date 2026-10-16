@@ -47,7 +47,7 @@ function samplePdf(label, code) {
   return Buffer.from(pdf);
 }
 
-export async function seedDemo({ dbPath = 'private-data/sapatri.sqlite', outputPath = 'public/data/innovations.json', backupRoot = 'private-data/backups', archiveOriginals = true, replace = false } = {}) {
+export async function seedDemo({ dbPath = 'private-data/sapatri.sqlite', outputPath = 'server/data/innovations.json', backupRoot = 'private-data/backups', archiveOriginals = true, replace = false } = {}) {
   const db = openStore(dbPath);
   try {
     if (db.prepare("SELECT key FROM content WHERE key='_demo_seed_v1'").get() && !replace) throw new Error('Data demo sudah tersedia. Gunakan --replace-demo hanya untuk mengatur ulang contoh demo.');

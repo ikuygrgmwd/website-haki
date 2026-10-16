@@ -23,6 +23,41 @@ async function fixture(t, seed = false) {
 const basic = { type: 'Program Komputer', description: 'Pengujian aplikasi', creators: [], holders: [], attachments: [] };
 const image = async () => (await sharp({ create: { width: 20, height: 20, channels: 3, background: '#b57864' } }).png().toBuffer()).toString('base64');
 
+test('dashboard requires a live session and login news is managed only by Admin', async t => {
+  const { a, client, createUser, app, dir } = await fixture(t);
+  const guest = client(); const { c: user } = await createUser('news-reader');
+  assert.equal((await guest.req('/dashboard')).status, 401);
+  assert.equal((await guest.req('/../data/innovations.json')).status, 404);
+  assert.equal((await a.req('/dashboard')).status, 200);
+  assert.equal((await user.req('/dashboard')).status, 200);
+  assert.equal((await user.req('/content')).status, 403);
+  assert.equal((await guest.req('/content/news', 'PUT', { slides: [] })).status, 401);
+  assert.equal((await user.req('/content/news', 'PUT', { slides: [] })).status, 403);
+  assert.equal((await user.req('/files', 'POST', { purpose: 'landing', name: 'news.png', base64: await image() })).status, 403);
+  const defaults = (await guest.ok('/landing')).news;
+  assert.equal(defaults.length, 3); assert.ok(defaults.every(n => n.description.includes('BERITA DUMMY')));
+  const imageId = (await a.ok('/files', 'POST', { purpose: 'landing', name: 'news.png', base64: await image() })).id;
+  assert.equal((await guest.req(`/files/${imageId}`)).status, 401);
+  const news = { ...defaults[0], title: 'Berita uji', imageId };
+  await a.ok('/content/news', 'PUT', { slides: [news, { ...defaults[1], visible: false }] });
+  assert.deepEqual((await guest.ok('/landing')).news, [news]);
+  assert.equal((await guest.req(`/files/${imageId}`)).status, 200);
+  assert.equal((await a.req('/content/news', 'PUT', { slides: [null] })).status, 400);
+  assert.equal((await a.req('/content/news', 'PUT', { slides: [{ ...news, description: '' }] })).status, 400);
+  assert.equal((await a.req('/content/news', 'PUT', { slides: [{ ...news, url: 'javascript:alert(1)' }] })).status, 400);
+  assert.equal((await a.req('/content/news', 'PUT', { slides: [news] }, { 'X-CSRF-Token': 'wrong' })).status, 403);
+  await a.ok('/content/news', 'PUT', { slides: [{ ...news, visible: false }] });
+  assert.equal((await guest.req(`/files/${imageId}`)).status, 401);
+  await a.ok('/content/news', 'PUT', { slides: [] });
+  assert.deepEqual((await guest.ok('/landing')).news, []);
+  const reopened = openStore(join(dir, 'test.sqlite'), false);
+  assert.deepEqual(JSON.parse(reopened.prepare("SELECT data FROM content WHERE key='news'").get().data), []);
+  reopened.close();
+  app.db.prepare('UPDATE sessions SET expires=0').run();
+  assert.equal((await user.req('/dashboard')).status, 401);
+  assert.equal((await a.req('/content/news', 'PUT', { slides: [news] })).status, 401);
+});
+
 test('ownership, persistent drafts, edit conflicts, CSRF and protected files', async t => {
   const { a, client, createUser, app } = await fixture(t);
   const { c: first, user: owner } = await createUser('pertama'); const { c: second } = await createUser('kedua');
@@ -108,7 +143,7 @@ test('profile, secure password reset, last Admin guard and published content', a
 });
 
 test('feeder import preserves unknown facts and geographical identifiers', async t => {
-  const { a } = await fixture(t, true); const rows = await a.ok('/innovations'); assert.equal(rows.length, JSON.parse(readFileSync('public/data/innovations.json')).innovations.length);
+  const { a } = await fixture(t, true); const rows = await a.ok('/innovations'); assert.equal(rows.length, JSON.parse(readFileSync('server/data/innovations.json')).innovations.length);
   assert.ok(rows.every(r => !r.owner_id && !r.status && !r.created_at && !r.submitted_at));
   const regions = await a.ok('/regions'); assert.equal(regions.filter(r => r.level === 'kecamatan').length, 12); assert.equal(regions.filter(r => r.level === 'kelurahan').length, 56);
   assert.equal(regions.find(r => r.code === '32.75.01').name, 'Bekasi Timur');

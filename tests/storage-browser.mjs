@@ -58,7 +58,8 @@ try {
   await page.getByLabel('Email', { exact: true }).fill('storage@example.test');
   await page.getByLabel('Password', { exact: true }).fill('Storage-Test-2026!');
   await page.getByRole('button', { name: 'Masuk', exact: true }).click();
-  await page.getByRole('heading', { name: 'Daftar Ciptaan', exact: true }).waitFor();
+  await page.locator('#district-filter').waitFor();
+  assert.equal(new URL(page.url()).hash, '#/dashboard');
   console.log('PASS: Storage browser login');
   const work = await page.evaluate(async () => {
     const s = await fetch('/api/session').then(r => r.json());

@@ -5,6 +5,8 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 import sharp from 'sharp';
 import sanitizeHtml from './generated/sanitize-html.mjs';
+import dashboardData from './data/innovations.json' with { type: 'json' };
+import { defaultNews } from './landing-defaults.mjs';
 import { openStore, uid, token, digest, now, publicUser, hashPassword, verifyPassword } from './store.mjs';
 const fail = (message, status = 400) => { throw Object.assign(new Error(message), { status }); };
 // Drain every validation query before rollback/releasing a pooled connection.
@@ -37,7 +39,7 @@ export async function createApplication({ database, storage = null, dbPath = 'pr
     const getInnovation = async (id, u) => { const row = (await one('SELECT * FROM innovations WHERE id=?', id)); if (!row || (u.role !== 'Admin' && row.owner_id !== u.id))
         fail('Ciptaan tidak ditemukan.', 404); return row; };
     const expand = async (row) => ({ ...row, data: JSON.parse(row.data), ownerName: (await one('SELECT name FROM users WHERE id=?', row.owner_id))?.name || null });
-    const getContent = async (key) => JSON.parse((await one('SELECT data FROM content WHERE key=?', key))?.data || (key === 'carousel' ? '[]' : '{}'));
+    const getContent = async (key) => JSON.parse((await one('SELECT data FROM content WHERE key=?', key))?.data || (key === 'news' ? JSON.stringify(defaultNews) : key === 'carousel' ? '[]' : '{}'));
     const setContent = async (key, data) => (await run('INSERT INTO content(key,data) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET data=excluded.data', key, JSON.stringify(data)));
     const activeRegion = async (id, level) => { const r = (await one('SELECT * FROM regions WHERE id=? AND level=? AND active=1', id || '', level)); if (!r)
         fail(`Pilihan ${level} tidak aktif atau tidak valid.`); return r; };
@@ -160,7 +162,7 @@ export async function createApplication({ database, storage = null, dbPath = 'pr
             if (path === '/api/session' && method === 'GET')
                 return json(res, { user: publicUser(u) || null, csrf: s?.csrf || '', setup: !(await one('SELECT id FROM users LIMIT 1')) });
             if (path === '/api/landing' && method === 'GET')
-                return json(res, { slides: (await getContent('carousel')).filter(x => x.visible), about: (await getContent('about')).visible ? (await getContent('about')) : null });
+                return json(res, { slides: (await getContent('carousel')).filter(x => x.visible), news: (await getContent('news')).filter(x => x.visible), about: (await getContent('about')).visible ? (await getContent('about')) : null });
             if (['/api/setup', '/api/login', '/api/reset-password'].includes(path) && method === 'POST') {
                 limit(req);
                 const b = await body(req);
@@ -208,7 +210,7 @@ export async function createApplication({ database, storage = null, dbPath = 'pr
                 if (!f)
                     fail('Berkas tidak ditemukan.', 404);
                 const about = (await getContent('about'));
-                const published = f.purpose === 'landing' && ((await getContent('carousel')).some(x => x.visible && x.imageId === id) || (about.visible && about.imageId === id));
+                const published = f.purpose === 'landing' && ([...(await getContent('carousel')), ...(await getContent('news'))].some(x => x.visible && x.imageId === id) || (about.visible && about.imageId === id));
                 if (!published) {
                     if (!u)
                         fail('Silakan masuk.', 401);
@@ -236,6 +238,8 @@ export async function createApplication({ database, storage = null, dbPath = 'pr
                 fail('Silakan masuk terlebih dahulu.', 401);
             if (mutating && req.headers['x-csrf-token'] !== s.csrf)
                 fail('Sesi tidak valid. Muat ulang halaman.', 403);
+            if (path === '/api/dashboard' && method === 'GET')
+                return json(res, dashboardData);
             if (path === '/api/logout' && method === 'POST') {
                 (await run('DELETE FROM sessions WHERE hash=?', s.hash));
                 cookie(res, '', 0);
@@ -499,18 +503,19 @@ export async function createApplication({ database, storage = null, dbPath = 'pr
             }
             if (path === '/api/content' && method === 'GET') {
                 admin(u);
-                return json(res, { slides: (await getContent('carousel')), about: (await getContent('about')) });
+                return json(res, { slides: (await getContent('carousel')), news: (await getContent('news')), about: (await getContent('about')) });
             }
-            if (path === '/api/content/carousel' && method === 'PUT') {
+            if (['/api/content/carousel', '/api/content/news'].includes(path) && method === 'PUT') {
                 admin(u);
+                const news = path.endsWith('/news');
                 const b = await body(req);
                 if (!Array.isArray(b.slides) || b.slides.length > 20)
-                    fail('Maksimal 20 slide.');
-                const slides = (await completeAll(b.slides.map(async (x) => { if (!text(x.title) || !x.imageId)
-                    fail('Judul dan gambar slide wajib diisi.'); if (x.buttonText && !x.url)
-                    fail('Tautan tombol wajib diisi.'); return { id: text(x.id, 50) || uid(), title: text(x.title, 100), description: text(x.description, 500), imageId: (await checkFile(x.imageId, 'landing', u)), buttonText: text(x.buttonText, 50), url: safeLink(x.url), visible: !!x.visible }; })));
-                (await setContent('carousel', slides));
-                (await audit(u, 'carousel.simpan'));
+                    fail('Maksimal 20 konten.');
+                const slides = (await completeAll(b.slides.map(async (x) => { if (!x || typeof x !== 'object' || !text(x.title) || (!news && !x.imageId) || (news && !text(x.description)))
+                    fail(news ? 'Judul dan deskripsi berita wajib diisi.' : 'Judul dan gambar slide wajib diisi.'); if (x.buttonText && !x.url)
+                    fail('Tautan tombol wajib diisi.'); return { id: text(x.id, 50) || uid(), title: text(x.title, 100), description: text(x.description, news ? 3000 : 500), imageId: (await checkFile(x.imageId, 'landing', u)) || '', buttonText: text(x.buttonText, 50), url: safeLink(x.url), visible: !!x.visible }; })));
+                (await setContent(news ? 'news' : 'carousel', slides));
+                (await audit(u, news ? 'berita.simpan' : 'carousel.simpan'));
                 return json(res, slides);
             }
             if (path === '/api/content/about' && method === 'PUT') {

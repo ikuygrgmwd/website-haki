@@ -136,8 +136,10 @@ Jika rollback diperlukan setelah pengguna sudah menulis ke database online,
 jangan mengaktifkan kembali SQLite lama tanpa rekonsiliasi data baru. Rollback
 kode saja tidak mengembalikan data PostgreSQL atau Storage.
 
-Dashboard publik masih membaca `public/data/innovations.json`. Migrasi tidak
-mempublikasikan data pengajuan privat secara otomatis.
+Dashboard memerlukan login dan mengambil snapshot `server/data/innovations.json`
+melalui `/api/dashboard`. Snapshot ikut dalam modul server, bukan aset publik.
+Migrasi tidak memperbarui snapshot pengajuan secara otomatis. Halaman awal
+adalah `#/login`, dengan berita, carousel, dan Tentang HAKI yang dikelola Admin.
 
 Referensi: [Supabase connection](https://supabase.com/docs/guides/database/connecting-to-postgres),
 [private buckets](https://supabase.com/docs/guides/storage/buckets/fundamentals),

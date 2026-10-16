@@ -12,10 +12,16 @@ export const state: { user: User | null; csrf: string; setup: boolean; regions: 
 export async function api<T = unknown>(path: string, method = 'GET', body?: unknown): Promise<T> {
   const response = await fetch(`/api${path}`, { method, credentials: 'same-origin', headers: { ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}), ...(method !== 'GET' ? { 'X-CSRF-Token': state.csrf } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) });
   const result = await response.json().catch(() => ({ error: 'Layanan belum tersedia. Silakan coba kembali beberapa saat lagi.' }));
-  if (!response.ok) throw new Error(result.error || 'Permintaan gagal.');
+  if (!response.ok) {
+    if (response.status === 401 && !['/login', '/setup', '/reset-password'].includes(path)) {
+      state.user = null; state.csrf = ''; state.regions = [];
+      location.replace('#/login');
+    }
+    throw new Error(result.error || 'Permintaan gagal.');
+  }
   return result as T;
 }
-export async function refreshSession() { const result = await api<{ user: User | null; csrf: string; setup: boolean }>('/session'); Object.assign(state, result); if (state.user) state.regions = await api<Region[]>('/regions'); }
+export async function refreshSession() { const result = await api<{ user: User | null; csrf: string; setup: boolean }>('/session'); Object.assign(state, result); state.regions = state.user ? await api<Region[]>('/regions') : []; }
 export async function upload(file: File, purpose: string, innovationId?: string): Promise<Attachment> {
   const max = ['attachment', 'certificate'].includes(purpose) ? 8 : 2;
   if (file.size > max * 1024 * 1024) throw new Error(`Ukuran maksimal ${max} MB.`);
